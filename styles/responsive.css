@@ -1,0 +1,9 @@
+/*Responsive Design*/
+
+@media (max-width: 768px){
+	.inner{
+		width: 95%;
+		margin: 0 auto;
+
+	}
+}
