@@ -11,51 +11,56 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<h1 class="title">Moderm Weather Widget</h1>
+			<h1 class="title"> Current conditions in cities around the World</h1>
+			<div class="city-weather">
+				<form class="search-city">
+					<input type="city_name" name="city_name" placeholder="City, State">
+				</form>
+			</div>
 			<div class="inner">
 				<div class="weather-block">
-					<img src="images/1.jpg" alt="Weather in Nigeria">
-					<div id="forecast1" class="forecast">
-						<h1>Weather at <span id="location1"> </span></h1>
+					<img src="images/1.jpg" alt="Weather in New York">
+					<div id="forecast1" class="forecast" data-city='newyork' data-state="NY">
+						<h1>Weather at <span class="location"> </span></h1>
 						<div id="imgdiv1">
-							<img id="img1" src=""/>
+							<img class="img" src=""/>
 						</div>
-						<p><span id="temp1"> </span> F And <span id="desc1"> </span></p>
-						<p>Wind: <span id="wind1"></span></p>
+						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+						<p>Wind: <span class="wind"></span></p>
 					</div>
 		 		</div>
 		
 				<div class="weather-block">
 					<img src="images/2.jpg" alt="Weather in Los Angeles">	
-					<div id="forecast2" class="forecast">
-						<h1>Weather at <span id="location2"> </span></h1>
-						<div id="imgdiv2">
-							<img id="img2" src=""/>
+					<div id="forecast1" class="forecast" data-city="los_anegles" data-state="CA">
+						<h1>Weather at <span class="location"> </span></h1>
+						<div id="imgdiv">
+							<img class="img" src=""/>
 						</div>
-						<p><span id="temp2"> </span> F And <span id="desc"> </span></p>
-						<p>Wind: <span id="wind2"></span></p>
+						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+						<p>Wind: <span class="wind"></span></p>
 					</div>
 				</div>
 				<div class="weather-block">
-					<img src="images/3.jpg" alt="Weather in Sweden">
-					<div id="forecast3" class="forecast">
-						<h1>Weather at <span id="location3"> </span></h1>
+					<img src="images/3.jpg" alt="Weather in Chicago">
+					<div id="forecast3" class="forecast" data-city="chicago" data-state="IL">
+						<h1>Weather at <span class="location"> </span></h1>
 						<div id="imgdiv3">
-						<img id="img3" src=""/>
+						<img class="img" src=""/>
 						</div>
-						<p><span id="temp3"> </span> F And <span id="desc"> </span></p>
-						<p>Wind: <span id="wind3"></span></p>
+						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+						<p>Wind: <span class="wind"></span></p>
 					</div>
 				</div>	
 				<div class="weather-block">
-					<img src="images/4.jpg" alt="Weather in Delmenhorst">
-					<div id="forecast4" class="forecast">
-						<h1>Weather at <span id="location4"> </span></h1>
+					<img src="images/4.jpg" alt="Weather in Miami">
+					<div id="forecast4" class="forecast" data-city="miami" data-state="FL">
+						<h1>Weather at <span class="location"> </span></h1>
 						<div id="imgdiv4">
-						<img id="img4" src=""/>
+						<img class="img" src=""/>
 						</div>
-						<p><span id="temp4"> </span> F And <span id="desc"> </span></p>
-						<p>Wind: <span id="wind4"></span></p>
+						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+						<p>Wind: <span class="wind"></span></p>
 					</div>
 				</div>
 				<div class="clear"> </div>

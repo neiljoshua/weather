@@ -24,6 +24,17 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	clear: both;
 }
 
+.city-weather{
+	margin-top: 20px;
+	margin-bottom: 30px
+}
+
+.city-weather .search-city{
+	display: block;
+	width: 100px;
+	margin: 0 auto;
+}
+
 .weather-block{
 	position: relative;
 	float: left;
@@ -65,3 +76,4 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	width: 90px;
 	height: 40px;
 }
+

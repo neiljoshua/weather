@@ -1,31 +1,31 @@
 $(document).ready(function() {
 
 	function getWeather() {
-	  var state ='NY'; 	
-	  var city = 'new_york';	
-      var key = '3af49458477b67aa';
-	  var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json";
+	    var state = $('.inner .forecast').attr('data-state'); 	
+	    var city = $('.inner .forecast').attr('data-city');	
+        var key = '3af49458477b67aa';
+	    var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json";
+	    $.ajax({
+		    url : Weather,
+	    	dataType : "jsonp",
+	    	success : function(results) {
+				var location = results.current_observation.display_location.full;
+				var temp = results.current_observation.feelslike_f;
+				var img = results.current_observation.icon_url;
+				var desc = results.current_observation.weather;
+				var wind = results.current_observation.wind_string;
+				// get all the information
+				//console.log(img1);	
+				$('.location').html(location);
+			    $('.temp').html(temp);
+				$('.desc').html(desc);
+				$('.wind').html(wind);
+				//filling the image src attribute with the image url
+				$('.img').attr('src', img);
+			}				
+		});	
+	};	    
 
-	  $.ajax({
-		url : Weather,
-		dataType : "jsonp",
-		success : function(results) {
-			var location1 = results.current_observation.display_location.full;
-			var temp1 = results.current_observation.feelslike_f;
-			var img1 = results.current_observation.icon_url;
-			var desc1 = results.current_observation.weather;
-			var wind1 = results.current_observation.wind_string;
-			// get all the information
-			//console.log(img1);
-			$('#location1').html(location1);
-		    $('#temp1').html(temp1);
-			$('#desc1').html(desc1);
-			$('#wind1').html(wind1);
-			//filling the image src attribute with the image url
-			$('#img1').attr('src', img1);
-		}
-		});
-	}
 	getWeather();
 
 
