@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
-	function getWeather() {
+	$('.weather-block').each(function getWeather() {
 	    //var state = $('.inner .forecast').attr('data-state'); 
-	    var state = $(this).data("state");	
-	    //var city = $('.inner .forecast').attr('data-city');	
-	    var city = $(this).data("city");	
+	    var state = $(this).data('state');
+	    var city = $('.weather-block').attr('data-city');	
+	    //var city = $(this).data("city");	
         var key = '3af49458477b67aa';
 	    var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json";
 	    $.ajax({
@@ -25,10 +25,10 @@ $(document).ready(function() {
 				//filling the image src attribute with the image url
 				$('.img').attr('src', img);
 			}				
-		});	
-	};	    
+		});	    
+	})
 
-	getWeather();
+	//getWeather();
 
 
 	//var location =data['response']['current_observation']['display_location']['full'];
