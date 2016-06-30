@@ -1,8 +1,10 @@
 $(document).ready(function() {
 
 	function getWeather() {
-	    var state = $('.inner .forecast').attr('data-state'); 	
-	    var city = $('.inner .forecast').attr('data-city');	
+	    //var state = $('.inner .forecast').attr('data-state'); 
+	    var state = $(this).data("state");	
+	    //var city = $('.inner .forecast').attr('data-city');	
+	    var city = $(this).data("city");	
         var key = '3af49458477b67aa';
 	    var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json";
 	    $.ajax({
