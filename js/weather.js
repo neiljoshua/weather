@@ -1,29 +1,39 @@
 $(document).ready(function() {
 
-	$('.weather-block').each(function getWeather() {
+	$('.weather-block').each(function() {
+		var element = $(this);
 	    //var state = $('.inner .forecast').attr('data-state'); 
 	    var state = $(this).data('state');
-	    var city = $('.weather-block').attr('data-city');	
+	    var city = $(this).data('city');	
 	    //var city = $(this).data("city");	
         var key = '3af49458477b67aa';
 	    var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json";
+	    console.log(Weather); 
 	    $.ajax({
 		    url : Weather,
 	    	dataType : "jsonp",
 	    	success : function(results) {
 				var location = results.current_observation.display_location.full;
+				console.log(location);
 				var temp = results.current_observation.feelslike_f;
 				var img = results.current_observation.icon_url;
 				var desc = results.current_observation.weather;
 				var wind = results.current_observation.wind_string;
 				// get all the information
 				//console.log(img1);	
-				$('.location').html(location);
-			    $('.temp').html(temp);
-				$('.desc').html(desc);
-				$('.wind').html(wind);
+				var test = $(this).find('.location').html(location);
+                console.log(test)
+				element.find('.location').html(location);
+				element.find('.temp').html(temp);
+				element.find('.desc').html(desc);
+				element.find('.wind').html(wind);
+				element.find('.img').attr('src', img);
+				//$('.location').html(location);
+			    //$('.temp').html(temp);
+				//$('.desc').html(desc);
+				//$('.wind').html(wind);
 				//filling the image src attribute with the image url
-				$('.img').attr('src', img);
+				//$('.img').attr('src', img);
 			}				
 		});	    
 	})
