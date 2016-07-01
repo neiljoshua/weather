@@ -19,26 +19,16 @@ $(document).ready(function() {
 				var img = results.current_observation.icon_url;
 				var desc = results.current_observation.weather;
 				var wind = results.current_observation.wind_string;
-				// get all the information
-				//console.log(img1);	
-				var test = $(this).find('.location').html(location);
-                console.log(test)
+				//var test = $(this).find('.location').html(location);
 				element.find('.location').html(location);
 				element.find('.temp').html(temp);
 				element.find('.desc').html(desc);
 				element.find('.wind').html(wind);
 				element.find('.img').attr('src', img);
-				//$('.location').html(location);
-			    //$('.temp').html(temp);
-				//$('.desc').html(desc);
-				//$('.wind').html(wind);
-				//filling the image src attribute with the image url
-				//$('.img').attr('src', img);
 			}				
 		});	    
 	})
 
-	//getWeather();
 
 
 	//var location =data['response']['current_observation']['display_location']['full'];
