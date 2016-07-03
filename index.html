@@ -11,14 +11,21 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<h1 class="title"> Current conditions in cities around the World</h1>
-			<div class="city-weather">
-				<form class="search-city">
-					<input type="city_name" name="city_name" placeholder="City, State">
+			<h1 class="title"> Current Conditions In cities around the World</h1>
+			<div class="weather-search">
+				<form class="user-search">
+					<input id="user-location" type="city_name" name="city_name" placeholder="City, State">
 				</form>
 			</div>
 			<div class="inner">
-				<div class="weather-block" data-city='newyork' data-state="NY">
+				<div class="weather-result">
+					<h1> Current Weather at <span id="weather-result"> </span></h1>
+					<div>
+						<img id="icon-redult" src="">
+					</div>
+					<p>Feels like <span id="temp-result"> </span></p>
+				</div>
+				<div class="weather-block" data-city='lima' data-state="PE">
 					<img src="images/1.jpg" alt="Weather in New York">
 					<div id="forecast1" class="forecast" >
 						<h1>Weather at <span class="location"> </span></h1>

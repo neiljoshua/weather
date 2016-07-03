@@ -18,18 +18,28 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 .inner{
 	width: 80%;
 	margin: 0 auto;
+	position: relative;
 }
 
+.weather-result{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left:0;
+	visibility: none;
+	opacity: 0;
+}
 .clear {
 	clear: both;
 }
 
-.city-weather{
+.weather-search{
 	margin-top: 20px;
 	margin-bottom: 30px
 }
 
-.city-weather .search-city{
+.weather-search .user-search{
 	display: block;
 	width: 100px;
 	margin: 0 auto;
