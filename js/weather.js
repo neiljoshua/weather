@@ -60,7 +60,7 @@ $(document).ready(function() {
 		$('#weather-results').removeClass('hide-results').addClass('show-results');	
 	})
 
-	$('.button-results')on(click,function(){
+	$('.button-results').on('click',function(){
 		$('#weather-results').removeClass('show-results').addClass('hide-results');
 	})
 }); // End of doc ready. 	
