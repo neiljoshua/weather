@@ -57,7 +57,10 @@ $(document).ready(function() {
 		  	}
 	    });
 
-		$('#weather-results').addClass('show-results');	
+		$('#weather-results').removeClass('hide-results').addClass('show-results');	
 	})
 
+	$('.button-results')on(click,function(){
+		$('#weather-results').removeClass('show-results').addClass('hide-results');
+	})
 }); // End of doc ready. 	

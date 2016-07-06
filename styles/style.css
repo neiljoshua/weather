@@ -29,6 +29,38 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	left:0;
 	visibility: none;
 	opacity: 0;
+	background-color: #1aa3ff;
+}
+
+.inner #weather-results h1,p {
+	text-align: center;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	font-size: 26px;
+}
+
+.inner #weather-results div{
+	width: 60%;
+	margin: 0 auto;
+}
+
+.inner #weather-results div img {
+	display: block;
+	margin : 0 auto;
+	height: 230px;
+	width:230px;
+
+}
+
+.inner #weather-results button{
+	display: block;
+	margin: 0 auto;
+	width: 100px;
+    height: 41px;
+    border-radius: 10px;
+    background: none;
+    font-size: 20px;
+    color: white;
 }
 
 .clear {
