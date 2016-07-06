@@ -21,7 +21,7 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	position: relative;
 }
 
-.weather-result{
+.inner #weather-results{
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -30,6 +30,7 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	visibility: none;
 	opacity: 0;
 }
+
 .clear {
 	clear: both;
 }
@@ -39,7 +40,7 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	margin-bottom: 30px
 }
 
-.weather-search .user-search{
+.weather-search .user-form{
 	display: block;
 	width: 100px;
 	margin: 0 auto;
@@ -87,3 +88,17 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	height: 40px;
 }
 
+#weather-results.show-results{
+	visibility: visible;;
+	opacity: 1;
+	~webkit-transition: 0.5s 0.4s ease-in-out;
+	transition: 0.5s 0.4s ease-in-out;
+	z-index: 99999;
+}
+
+#weather-results.hide-results{
+	visibility: hidden;
+	opacity: 0;
+	~webkit-transition: 0.5s 0.3s ease-in-out;
+	transition:  0.5s 0.3s ease-in-out;
+}

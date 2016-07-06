@@ -12,18 +12,20 @@
 	<body>
 		<div class="wrapper">
 			<h1 class="title"> Current Conditions In cities around the World</h1>
-			<div class="weather-search">
-				<form class="user-search">
+			<div class="weather-search" >
+				<form class="user-form" action="search" >
 					<input id="user-location" type="city_name" name="city_name" placeholder="City, State">
+					<div id="results"></div>
 				</form>
 			</div>
 			<div class="inner">
-				<div class="weather-result">
-					<h1> Current Weather at <span id="weather-result"> </span></h1>
+				<div id="weather-results">
+					<h1> Current Weather at <span id="location-results"> </span></h1>
 					<div>
-						<img id="icon-redult" src="">
+						<img id="icon-results" src="">
 					</div>
-					<p>Feels like <span id="temp-result"> </span></p>
+					<p>Feels like <span id="temp-results"> </span></p>
+					<button>CLose</button>
 				</div>
 				<div class="weather-block" data-city='lima' data-state="PE">
 					<img src="images/1.jpg" alt="Weather in New York">
