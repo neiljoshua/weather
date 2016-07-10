@@ -63,13 +63,15 @@ $(document).ready(function() {
 		    	console.log(line);
 		    	$('ul#city-results').append('<li><a>' +cityName+ '</a></li>');
 		    	$('#city-results li a').attr('href',line);
+		    	$('#city-results li a').addClass('filter-city');
 			    $('#results').removeClass('hide-results').addClass('show-results');
 		    }
 		});
 	}		
 
 	function getWeather(){
-		$('#city-results li').on('click',function(e){
+		
+		$('.filter-city').on('click',function(e){
 			e.preventDefault();
 			var cityLocation = $(this).attr('href');
 			console.log('cityLocation');
@@ -92,7 +94,7 @@ $(document).ready(function() {
 			//   	}
 		    // });
 	    $('#weather-results').removeClass('hide-results').addClass('show-results');
-	});
+		});
 	}
 
 
