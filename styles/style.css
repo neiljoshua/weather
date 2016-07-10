@@ -1,11 +1,11 @@
 * { margin: 0; padding: 0 }
 html { overflow-y: scroll}
-body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
-	   font-weight: 300; 
+body { background: url(../images/bg.png)repeat #44AD90 0px 0px; 
 	   font-size: 13px;
 	   color: #fff; 
 	   font-family: 'Raleway', 'Open Sans', Arial, helvetica, sans-serif;
 	}
+ul{ list-style-type: none ; background-color: fff;}
 
 .wrapper{
 	width: 100%;
@@ -33,6 +33,7 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 }
 
 .inner #weather-results h1,p {
+	font-weight: 300;
 	text-align: center;
 	margin-top: 5%;
 	margin-bottom: 5%;
@@ -74,8 +75,23 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 
 .weather-search .user-form{
 	display: block;
-	width: 100px;
+	width: 150px;
 	margin: 0 auto;
+}
+ 
+.weather-search .user-form input{
+	height: 20px;
+} 
+
+#city-results {
+	height: 50px;
+	overflow-y: scroll;
+	background-color: fff;	
+}
+
+#city-results li  a {
+	text-decoration: none;
+	color: #1a1a1a;
 }
 
 .weather-block{
@@ -91,6 +107,7 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	width: 100%;
 	height: auto;
 	min-height: 100%;
+	border-radius: 10px;
 }
 
 .weather-block .forecast{
@@ -105,12 +122,13 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	text-align: center;
     margin-top: 40px;
     margin-bottom: 30px;
+	font-weight: 300;
+	font-size: 12px;
 }
 
 .weather-block .forecast p {
 	margin-top: 30px;
 	margin-bottom: 30px;
-	font-size: 14px;
 }	
 .weather-block .forecast div{
 	margin: 0 auto;
@@ -120,17 +138,19 @@ body { background: url(../images/bg.png)repeat #44AD90 0px 0px;
 	height: 40px;
 }
 
-#weather-results.show-results{
+#weather-results.show-results, #results.show-results{
 	visibility: visible;;
 	opacity: 1;
-	~webkit-transition: 0.5s 0.4s ease-in-out;
-	transition: 0.5s 0.4s ease-in-out;
+	~webkit-transition: 0.6s 0.4s ease-in-out;
+	transition: 0.6s 0.4s ease-in-out;
 	z-index: 99999;
+	border-radius: 10px;
 }
 
-#weather-results.hide-results{
+#weather-results.hide-results, #results.hide-results{
 	visibility: hidden;
 	opacity: 0;
-	~webkit-transition: 0.5s 0.3s ease-in-out;
-	transition:  0.5s 0.3s ease-in-out;
+	~webkit-transition: 0.6s 0.3s ease-in-out;
+	transition:  0.6s 0.4s ease-in-out;
+	border-radius: 10px;
 }
