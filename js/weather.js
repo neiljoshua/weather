@@ -40,42 +40,38 @@ $(document).ready(function() {
 		    $('#json-results').html(JSON.stringify(jsonp, null, 1));
 		    var locations = JSON.stringify(jsonp, null, 1);
 		    locations = JSON.parse(locations);
-		    // console.log(locations);
 		    console.log(locations.RESULTS.length);
 
 		    for (var i = 0; i < locations.RESULTS.length; i++) { 
-		    	//console.log(locations.RESULTS[i].name);
 		        cityName = locations.RESULTS[i].name;
 		    	line = locations.RESULTS[i].l;
-		    	// console.log(cityName);
-		    	// console.log(line);
 		    	$('ul#city-results').append('<li><a href="#" class="filter-city" data-url="'+line+'">' +cityName+ '</a></li>');
 			    $('#results').removeClass('hide-results').addClass('show-results');
 		    }
 		});
 	}		
 
-	function loadBackground() {
-		var locationLat = $('#location-results').data('lat');
-		console.log(locationLat);
-		var locationLon = $('#location-results').data('lon');
-		console.log(locationLon);
-		var weatherTag = $('#location-results').data('weather');
-		console.log(weatherTag);
+	function loadBackground(lLatitude, lLongitude, lTag) {
+	
+		console.log('lLatitude');
+		console.log(lLongitude);
+		console.log(lTag);
 		var Key = '2212bc8253d6f3ed04b9e18ee5ddaa51';
-	    var photoResult = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + Key + "&lat=" + locationLat + "&lon=" + locationLon + "&accuracy=1&tags=" + weatherTag + "&sort=relevance&extras=url_l&format=json";
-	    console.log(photoResult);
-	    $.ajax({
-	    	url : photoResult,
-	    	dataType : "jsonp",
-	    	success : function(results){
-	    		var photoLink = results.photos.page.url_l;
-	    		var photoSource = results.photo.owner;
-	    		var photoSourceId = results.photo.id.
-	    		console.log(photoLink);
-	    		console.log(photoSource);
-	    		console.log(photoSourceId);
-	    	}
+		//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=360fe8488d7625a08f7e9a05f56f8711&tags=new+york&text=sunny+city+view&privacy_filter=1&lat=40.75013351&lon=-73.99700928&format=json&api_sig=5034ee17dfa772398655a916c1d5653c
+	    var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&accuracy=1&tags="+lTag+"&sort=relevance&extras=url_l&format=json";
+		//var url = "//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + Key + "&tags=" + weatherTag + "&text=" + weatherTag + "+view&privacy_filter=1&lat=" + locationLat + "&lon=" + locationLon + "&format=json&api_sig=5034ee17dfa772398655a916c1d5653c";
+	    $.getJSON(url,function(jsonp){
+	    	$('#json-results').html(JSON.stringify(jsonp, null, 1));
+	    	var results = JSON.stringify(jsonp, null, 1);
+	    	results = JSON.parse(results);
+	    	for ( var i =0; i <2; i++){
+	    		var photoId = results.photos.id;
+	    		var photoServer = results.photo.server;
+	    		var photoFarm = results.photo.farm;
+	    		var photoSecret = ressults.photo.secret;
+	    		var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
+	    		$('#weather-results').css('background-image','url('+ imgUrl + ')')
+	    	}	
 
 	    });
 	}
@@ -100,22 +96,24 @@ $(document).ready(function() {
 				  locationLat = results.current_observation.display_location.latitude;
 				  console.log(locationLat);
 				  locationLon = results.current_observation.display_location.longitude;
+				  console.log(locationLon);
 				  weatherTag = results.current_observation.weather;
+				  console.log(weatherTag);
 				  var location = results.current_observation.display_location.full;
 				  var temp = results.current_observation.feelslike_f;
 				  var img = results.current_observation.icon_url;
 				  element.find('#location-results').html(location);
 				  element.find('#icon-results').attr('src', img);
 				  element.find('#temp-results').html(temp);
-				  element.find('#location-results').attr('data-lat',locationLat);
-				  element.find('#location-results').attr('data-lon',locationLon);
-				  element.find('#location-results').attr('data-weather',weatherTag);
+				  // element.attr('data-lat',locationLat);
+				  // element.attr('data-lon',locationLon);
+				  // element.attr('data-weather',weatherTag);
 			  	}
 		    });
 
-		loadBackground();	
 	    $('#weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
+		loadBackground(locationLat,locationLon,weatherTag);	
 		});
 	}
 
@@ -130,9 +128,7 @@ $(document).ready(function() {
 	})
 
 	getWeather();
-	
-	
-
+	//loadBackground();
 	$('.button-results').on('click',function(){
 		$('#weather-results').removeClass('show-results').addClass('hide-results');
 	})
