@@ -51,28 +51,47 @@ $(document).ready(function() {
 		});
 	}		
 
+	function jsonFlickrApi (response){
+		for ( var i =0; i < response.photo.length; i++){
+			var photoId = response.photos.id;
+			var photoServer = response.photo.server;
+			var photoFarm = response.photo.farm;
+			var photoSecret = response.photo.secret;
+			var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
+			console.log(imgUrl);
+			$('#weather-results').attr('background-image','url('+ imgUrl + ')');
+		}	
+	}
+
 	function loadBackground(lLatitude, lLongitude, lTag) {
 	
 		console.log('lLatitude');
 		console.log(lLongitude);
 		console.log(lTag);
 		var Key = '2212bc8253d6f3ed04b9e18ee5ddaa51';
+		//var Key = '360fe8488d7625a08f7e9a05f56f8711';
 		//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=360fe8488d7625a08f7e9a05f56f8711&tags=new+york&text=sunny+city+view&privacy_filter=1&lat=40.75013351&lon=-73.99700928&format=json&api_sig=5034ee17dfa772398655a916c1d5653c
-	    var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&accuracy=1&tags="+lTag+"&sort=relevance&extras=url_l&format=json";
-		//var url = "//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + Key + "&tags=" + weatherTag + "&text=" + weatherTag + "+view&privacy_filter=1&lat=" + locationLat + "&lon=" + locationLon + "&format=json&api_sig=5034ee17dfa772398655a916c1d5653c";
-	    $.getJSON(url,function(jsonp){
+	    var flickrApi = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&accuracy=1&tags="+lTag+"&sort=relevance&format=json&jsoncallback=?";
+		//var flickrApi = "//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + Key + "&tags=" + lTag + "&text=" + lTag + "+view&privacy_filter=1&lat=" + lLatitude + "&lon=" + lLongitude + "&format=json&api_sig=5034ee17dfa772398655a916c1d5653c";
+	    var url = flickrApi + '&cb=?';
+	    $.getJSON(url,function (jsonp){
 	    	$('#json-results').html(JSON.stringify(jsonp, null, 1));
 	    	var results = JSON.stringify(jsonp, null, 1);
 	    	results = JSON.parse(results);
-	    	for ( var i =0; i <2; i++){
-	    		var photoId = results.photos.id;
-	    		var photoServer = results.photo.server;
-	    		var photoFarm = results.photo.farm;
-	    		var photoSecret = ressults.photo.secret;
-	    		var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
-	    		$('#weather-results').css('background-image','url('+ imgUrl + ')')
-	    	}	
-
+	    	console.log(results);
+	    	for ( var i =0; i < 2; i++){
+				var photoId = results.photos.photo.id;
+				console.log(photoId);
+				var photoServer = results.photos.photo.server;
+				console.log(photoServer);
+				var photoFarm = results.photos.photo.farm;
+				console.log(photoFarm);
+				var photoSecret = results.photos.photo.secret;
+				console.log(photoSecret);
+				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
+				console.log(imgUrl);
+				$('#weather-results').attr('background-image','url('+ imgUrl + ')');
+			}	
 	    });
 	}
 
@@ -94,11 +113,9 @@ $(document).ready(function() {
 				  dataType : "jsonp",
 				  success : function(results) {
 				  locationLat = results.current_observation.display_location.latitude;
-				  console.log(locationLat);
 				  locationLon = results.current_observation.display_location.longitude;
-				  console.log(locationLon);
 				  weatherTag = results.current_observation.weather;
-				  console.log(weatherTag);
+				  loadBackground(locationLat, locationLon, weatherTag);
 				  var location = results.current_observation.display_location.full;
 				  var temp = results.current_observation.feelslike_f;
 				  var img = results.current_observation.icon_url;
@@ -113,7 +130,7 @@ $(document).ready(function() {
 
 	    $('#weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
-		loadBackground(locationLat,locationLon,weatherTag);	
+			
 		});
 	}
 
