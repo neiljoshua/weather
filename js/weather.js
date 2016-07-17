@@ -58,17 +58,14 @@ $(document).ready(function() {
 		console.log(lLongitude);
 		console.log(lTag);
 		var Key = '2212bc8253d6f3ed04b9e18ee5ddaa51';
-		//var Key = '360fe8488d7625a08f7e9a05f56f8711';
-		//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=360fe8488d7625a08f7e9a05f56f8711&tags=new+york&text=sunny+city+view&privacy_filter=1&lat=40.75013351&lon=-73.99700928&format=json&api_sig=5034ee17dfa772398655a916c1d5653c
-	    var flickrApi = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&accuracy=1&tags="+lTag+"&sort=relevance&format=json&jsoncallback=?";
-		//var flickrApi = "//https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + Key + "&tags=" + lTag + "&text=" + lTag + "+view&privacy_filter=1&lat=" + lLatitude + "&lon=" + lLongitude + "&format=json&api_sig=5034ee17dfa772398655a916c1d5653c";
-	    var url = flickrApi + '&cb=?';
+		var flickrApi = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&accuracy=1&tags="+lTag+"&sort=relevance&format=json&jsoncallback=?";
+		var url = flickrApi + '&cb=?';
 	    $.getJSON(url,function (jsonp){
 	    	$('#json-results').html(JSON.stringify(jsonp, null, 1));
 	    	var results = JSON.stringify(jsonp, null, 1);
 	    	results = JSON.parse(results);
 	    	console.log(results);
-	    	for ( var i =0; i < 2; i++){
+	    	for ( var i =0; i < 1; i++){
 				var photoId = results.photos.photo.id;
 				console.log(photoId);
 				var photoServer = results.photos.photo.server;
@@ -79,7 +76,7 @@ $(document).ready(function() {
 				console.log(photoSecret);
 				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
 				console.log(imgUrl);
-				$('#weather-results').attr('background-image','url('+ imgUrl + ')');
+				$('.inner #weather-results').css('background-image','url('+ imgUrl + ')');
 			}	
 	    });
 	}
