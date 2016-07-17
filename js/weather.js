@@ -51,17 +51,6 @@ $(document).ready(function() {
 		});
 	}		
 
-	function jsonFlickrApi (response){
-		for ( var i =0; i < response.photo.length; i++){
-			var photoId = response.photos.id;
-			var photoServer = response.photo.server;
-			var photoFarm = response.photo.farm;
-			var photoSecret = response.photo.secret;
-			var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
-			console.log(imgUrl);
-			$('#weather-results').attr('background-image','url('+ imgUrl + ')');
-		}	
-	}
 
 	function loadBackground(lLatitude, lLongitude, lTag) {
 	
@@ -122,9 +111,6 @@ $(document).ready(function() {
 				  element.find('#location-results').html(location);
 				  element.find('#icon-results').attr('src', img);
 				  element.find('#temp-results').html(temp);
-				  // element.attr('data-lat',locationLat);
-				  // element.attr('data-lon',locationLon);
-				  // element.attr('data-weather',weatherTag);
 			  	}
 		    });
 
@@ -145,7 +131,7 @@ $(document).ready(function() {
 	})
 
 	getWeather();
-	//loadBackground();
+
 	$('.button-results').on('click',function(){
 		$('#weather-results').removeClass('show-results').addClass('hide-results');
 	})
