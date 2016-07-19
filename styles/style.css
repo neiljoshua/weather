@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0 }
 html { overflow-y: scroll}
-body { background: url(../images/bg.png)repeat #44AD90 0px 0px; 
+body { 
 	   font-size: 13px;
 	   color: #fff; 
 	   font-family: 'Raleway', 'Open Sans', Arial, helvetica, sans-serif;
@@ -13,11 +13,14 @@ ul{ list-style-type: none ; background-color: #fff;}
 
 .title{
 	text-align: center;
-	margin: 57px auto;
+	font-size: 30px;
+	font-weight: 300;
+	padding: 30px;
+
 }
 .weather-search{
-	margin-top: 20px;
-	margin-bottom: 30px
+	border-bottom: 3px #6C0638 solid;
+	background-color: #8BF3F0;
 }
 
 .weather-search .user-form{
@@ -27,11 +30,11 @@ ul{ list-style-type: none ; background-color: #fff;}
 }
  
 .weather-search .user-form input{
-	height: 20px;
+	height: 25px;
+    width: 147px;
+    border-radius: 10px;
+    text-align: center;
 } 
-
-.weather-search #results{
-}
 
 .weather-search #results {
 	display: block;
@@ -50,31 +53,33 @@ ul{ list-style-type: none ; background-color: #fff;}
 	width: 80%;
 	margin: 0 auto;
 	position: relative;
+	padding: 30px;
 }
 
 .inner #weather-results{
 	position: absolute;
-	top: 0;
+	top: 10px;
 	bottom: 0;
 	right: 0;
 	left:0;
 	visibility: none;
 	opacity: 0;
-	background-color: #1aa3ff;
+	background-color: #928BC2;
 	border-radius: 10px;
 }
 
-.inner #weather-results h1,p {
-	font-weight: 300;
+.inner #weather-results h1, .inner #weather-results p {
+	font-weight: 600;
 	text-align: center;
-	margin-top: 5%;
+	margin-top: 10%;
 	margin-bottom: 5%;
-	font-size: 26px;
+	font-size: 50px;
 }
 
 .inner #weather-results div{
 	width: 60%;
 	margin: 0 auto;
+	text-align: center;
 }
 
 .inner #weather-results div img {
@@ -102,47 +107,20 @@ ul{ list-style-type: none ; background-color: #fff;}
 
 
 .weather-block{
-	position: relative;
 	float: left;
-	width: 48%;
+	width: 46.5%;
 	height: 300px;
 	padding: 5px;
+	border-radius: 15px;
+	margin: 5px;
 	overflow: hidden;
 }
 
-.weather-block img{
-	width: 100%;
-	height: auto;
-	min-height: 100%;
-	border-radius: 10px;
-}
-
-.weather-block .forecast{
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	right: 0;
-}
-
-.weather-block .forecast {
-	text-align: center;
-    margin-top: 40px;
-    margin-bottom: 30px;
+.weather-block h1, .weather-block p{
+	font-size: 20px;
 	font-weight: 300;
-	font-size: 12px;
-}
-
-.weather-block .forecast p {
-	margin-top: 30px;
-	margin-bottom: 30px;
-}	
-.weather-block .forecast div{
-	margin: 0 auto;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	width: 90px;
-	height: 40px;
+	padding: 40px;
+	text-align: center;
 }
 
 #weather-results.show-results, .weather-search #results.show-results{

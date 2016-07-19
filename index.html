@@ -11,10 +11,10 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<h1 class="title"> Current Conditions In cities around the World</h1>
 			<div class="weather-search" >
+				<h1 class="title"> Weather Around the World</h1>
 				<form class="user-form" action="search" >
-					<input id="user-location" type="city_name" name="city_name" placeholder="City, State">
+					<input id="user-location" type="city_name"  autocomplete = "off" name="city_name" placeholder="City, State">
 					<div id="results">
 						<ul id="city-results">
 						</ul>
@@ -25,57 +25,33 @@
 				<!--Window that shows user search results -->
 				<div id="weather-results" >
 					<h1> Current Weather at <span id="location-results"> </span></h1>
-					<div>
+					<!--<div>
 						<img id="icon-results" src="">
-					</div>
+					</div>-->
 					<p>Feels like <span id="temp-results"> </span></p>
 					<button class="button-results">CLose</button>
 				</div>
 				<!--End of window search result -->
 				<div class="weather-block" data-city='lima' data-state="PE">
-					<img src="images/1.jpg" alt="Weather in New York">
-					<div id="forecast1" class="forecast" >
 						<h1>Weather at <span class="location"> </span></h1>
-						<div id="imgdiv1">
-							<img class="img" src=""/>
-						</div>
 						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
 						<p>Wind: <span class="wind"></span></p>
-					</div>
 		 		</div>
 		
 				<div class="weather-block" data-city="los_angeles" data-state="CA">
-					<img src="images/2.jpg" alt="Weather in Los Angeles">	
-					<div id="forecast1" class="forecast" >
 						<h1>Weather at <span class="location"> </span></h1>
-						<div id="imgdiv">
-							<img class="img" src=""/>
-						</div>
 						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
 						<p>Wind: <span class="wind"></span></p>
-					</div>
 				</div>
 				<div class="weather-block" data-city="chicago" data-state="IL">
-					<img src="images/3.jpg" alt="Weather in Chicago">
-					<div id="forecast3" class="forecast" >
 						<h1>Weather at <span class="location"> </span></h1>
-						<div id="imgdiv3">
-						<img class="img" src=""/>
-						</div>
 						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
 						<p>Wind: <span class="wind"></span></p>
-					</div>
 				</div>	
 				<div class="weather-block" data-city="miami" data-state="FL">
-					<img src="images/4.jpg" alt="Weather in Miami">
-					<div id="forecast4" class="forecast" >
 						<h1>Weather at <span class="location"> </span></h1>
-						<div id="imgdiv4">
-						<img class="img" src=""/>
-						</div>
 						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
 						<p>Wind: <span class="wind"></span></p>
-					</div>
 				</div>
 				<div class="clear"> </div>
 			</div>	

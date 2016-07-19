@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+	$('.weather-block').each(function(){
+	var bgcolorlist=new Array("#6C0638", "#5A2491", "#BAF3C3", "#c3baf3", "#78B56A", "#FA0AF8", "#588A78", "#F0C0BC", "#04E756", "#DD243B", "#928BC2");
+
+	$(this).css("background-color",bgcolorlist[Math.floor(Math.random()*bgcolorlist.length)]);
+    });
+
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
 	//     var state = $(this).data('state');
@@ -28,7 +34,9 @@ $(document).ready(function() {
 	// })
 	
 	function getCities() {
+		$('ul#city-results').empty();
 		var cityName ='';
+		console.log(cityName);
 		var line = '';
 		var city = $('#user-location').val();
 		var element = $('#weather-results');
@@ -46,6 +54,7 @@ $(document).ready(function() {
 		        cityName = locations.RESULTS[i].name;
 		    	line = locations.RESULTS[i].l;
 		    	$('ul#city-results').append('<li><a href="#" class="filter-city" data-url="'+line+'">' +cityName+ '</a></li>');
+		    	console.log(cityName);
 			    $('#results').removeClass('hide-results').addClass('show-results');
 		    }
 		});
@@ -53,8 +62,8 @@ $(document).ready(function() {
 
 
 	function loadBackground(lLatitude, lLongitude, lTag) {
-	
-		console.log('lLatitude');
+		$('.inner #weather-results').css('background-image','none');
+		console.log(lLatitude);
 		console.log(lLongitude);
 		console.log(lTag);
 		var Key = '2212bc8253d6f3ed04b9e18ee5ddaa51';
@@ -64,20 +73,20 @@ $(document).ready(function() {
 	    	$('#json-results').html(JSON.stringify(jsonp, null, 1));
 	    	var results = JSON.stringify(jsonp, null, 1);
 	    	results = JSON.parse(results);
-	    	console.log(results);
-	    	for ( var i =0; i < 1; i++){
-				var photoId = results.photos.photo.id;
-				console.log(photoId);
-				var photoServer = results.photos.photo.server;
-				console.log(photoServer);
-				var photoFarm = results.photos.photo.farm;
-				console.log(photoFarm);
-				var photoSecret = results.photos.photo.secret;
-				console.log(photoSecret);
+	    	console.log(results.photos.photo.length);
+	    	if ( results.photos.photo.length > 0 ){
+		    	var randomPhoto = results.photos.photo[Math.floor(Math.random() * results.photos.photo.length)];
+	    		console.log(randomPhoto);
+				var photoId = randomPhoto.id;
+				var photoServer = randomPhoto.server;
+				var photoFarm = randomPhoto.farm;
+				var photoSecret = randomPhoto.secret;
 				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
 				console.log(imgUrl);
-				$('.inner #weather-results').css('background-image','url('+ imgUrl + ')');
-			}	
+				$('.inner #weather-results').css('background-image','url('+imgUrl+')');
+				$('.inner #weather-results').css('background-size','cover');
+			}
+			$('.user-form').children('input').val('')	
 	    });
 	}
 
