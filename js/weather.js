@@ -1,10 +1,28 @@
 $(document).ready(function() {
 
-	$('.weather-block').each(function(){
-	var bgcolorlist=new Array("#6C0638", "#5A2491", "#BAF3C3", "#c3baf3", "#78B56A", "#FA0AF8", "#588A78", "#F0C0BC", "#04E756", "#DD243B", "#928BC2");
+	var bgcolorlist=new Array( "#01968A", "#4B2993", "#1A41DB", "#E3084A", "#359515", "#1AA18C", "#48AC12", "#4C1865", "#577EE8", "#1BEDFB", "#80437F", "#0E65D4", "#3D00DF", "#DD4DC3", "#FBF770", "#B60B20", "#1B8676", "#A0157A" );
+	var usedIndex=new Array(bgcolorlist.length);
 
-	$(this).css("background-color",bgcolorlist[Math.floor(Math.random()*bgcolorlist.length)]);
+	$('.weather-block').each(function(){
+	console.log(bgcolorlist);	
+	var element = this;	
+	var randomIndex = Math.floor(Math.random()*bgcolorlist.length);
+		for(var i=0; i < bgcolorlist.length; i++){
+			if ( bgcolorlist[randomIndex] != bgcolorlist[i] ) {
+				console.log("Hello");
+				$(element).css("background-color", bgcolorlist[randomIndex]);
+				usedIndex.push(bgcolorlist.splice(randomIndex,1));	
+				console.log(usedIndex);
+				break;
+			}
+		}
     });
+
+	// $(' .weather-block').each(function() {
+ //   		var randomColorChange = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+ //    	$(this).css("background-color", randomColorChange);
+ //    });
+
 
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
@@ -132,7 +150,7 @@ $(document).ready(function() {
 		console.log('Hola!');
 	});
 
-	$('#user-location').on('change',function (){
+	$('#user-location').on('keypress',function (){
 		getCities();
 	})
 
