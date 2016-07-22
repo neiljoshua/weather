@@ -18,12 +18,6 @@ $(document).ready(function() {
 		}
     });
 
-	// $(' .weather-block').each(function() {
- //   		var randomColorChange = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
- //    	$(this).css("background-color", randomColorChange);
- //    });
-
-
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
 	//     var state = $(this).data('state');
