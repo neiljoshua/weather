@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-
+	//dynamically give divs a random color.
 
 	var bgcolorlist=new Array( "#A0157A", "#4105A0", "#03FCD8", "#B52AD1", "#1821F4", "#6B9010", "#D4C306", "#AB25DB", "#8BEF7A", "#2CB3A6", "#56BAF1", "#00CECB", "#E4115E", "#47E1EE", "#B32533", "#A928AC", "#24AD5B", "#6F2B5D", "#B15FCE", "#36A12F", "#F0EE8C", "#F6BD5B", "#072F69" );
 	var usedIndex=new Array();
 
-	$('.weather-block').each(function(){
+	$('.weather-block div').each(function(){
 	console.log(bgcolorlist);	
 	var element = this;	
 	var randomIndex = Math.floor(Math.random()*bgcolorlist.length);
@@ -20,6 +20,8 @@ $(document).ready(function() {
 		}
     });
 
+	//open and closes user input window.
+
 	$('.open-slide').on('click',function(e){
 		e.preventDefault();
 		$('.user-form').removeClass('slide-up').addClass('slide-down');
@@ -27,19 +29,24 @@ $(document).ready(function() {
 	});
 
 	$('.close-slide').on('click', function(e){
-		e.preventDefault();
+		e.preventDefault();	
+		$('#results').removeClass('show-results').addClass('hide-results');
 		$('#search-wrapper .user-form').removeClass('slide-down').addClass('slide-up');
 		$('a.open-slide').removeClass('inactive').addClass('active');
+		$('ul#city-results').empty();
+		$('.user-form').find('input').val('');
+		$('#user-search').get[0].reset()
 	});
 
+	//Calls weather for each div.
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
 	//     var state = $(this).data('state');
 	//     var city = $(this).data('city');	
- //        var key = '6d21846ad7649b70';
- //        var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
+ 	//        var key = '6d21846ad7649b70';
+	//        var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
 	//     //console.log(Weather); 
- //       $.ajax({
+ 	//       $.ajax({
 	// 	        url : Weather,
 	//      	dataType : "jsonp",
 	//     	    success : function(results) {
@@ -88,8 +95,8 @@ $(document).ready(function() {
 
 
 	function loadBackground(lLatitude, lLongitude, lTag) {
-		$('.inner #weather-results').css('background-image','none');
-		$('.inner #weather-results').css('background-color','#ffffff');
+		$('.inner #weather-results div').css('background-image','none');
+		//$('.inner #weather-results div').css('background-color','#87767E');
 		console.log(lLatitude);
 		console.log(lLongitude);
 		console.log(lTag);
@@ -110,10 +117,10 @@ $(document).ready(function() {
 				var photoSecret = randomPhoto.secret;
 				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
 				console.log(imgUrl);
-				$('.inner #weather-results').css('background-image','url('+imgUrl+')');
-				$('.inner #weather-results').css('background-size','100% 100%');
+				$('.inner #weather-results div').css('background-image','url('+imgUrl+')');
+				$('.inner #weather-results div').css('background-size','100% 100%');
 			}else{
-				$('.inner #weather-results').css('background-color','#928BC2');
+				$('.inner #weather-results div').css('background-color','#87767E');
 			}
 			$('.user-form').children('input').val('')	
 	    });
