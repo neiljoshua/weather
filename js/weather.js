@@ -1,7 +1,9 @@
 $(document).ready(function() {
 
-	var bgcolorlist=new Array( "#01968A", "#4B2993", "#1A41DB", "#E3084A", "#359515", "#1AA18C", "#48AC12", "#4C1865", "#577EE8", "#1BEDFB", "#80437F", "#0E65D4", "#3D00DF", "#DD4DC3", "#FBF770", "#B60B20", "#1B8676", "#A0157A" );
-	var usedIndex=new Array(bgcolorlist.length);
+
+
+	var bgcolorlist=new Array( "#A0157A", "#4105A0", "#03FCD8", "#B52AD1", "#1821F4", "#6B9010", "#D4C306", "#AB25DB", "#8BEF7A", "#2CB3A6", "#56BAF1", "#00CECB", "#E4115E", "#47E1EE", "#B32533", "#A928AC", "#24AD5B", "#6F2B5D", "#B15FCE", "#36A12F", "#F0EE8C", "#F6BD5B", "#072F69" );
+	var usedIndex=new Array();
 
 	$('.weather-block').each(function(){
 	console.log(bgcolorlist);	
@@ -9,7 +11,7 @@ $(document).ready(function() {
 	var randomIndex = Math.floor(Math.random()*bgcolorlist.length);
 		for(var i=0; i < bgcolorlist.length; i++){
 			if ( bgcolorlist[randomIndex] != bgcolorlist[i] ) {
-				console.log("Hello");
+				//console.log("Hello");
 				$(element).css("background-color", bgcolorlist[randomIndex]);
 				usedIndex.push(bgcolorlist.splice(randomIndex,1));	
 				console.log(usedIndex);
@@ -17,6 +19,18 @@ $(document).ready(function() {
 			}
 		}
     });
+
+	$('.open-slide').on('click',function(e){
+		e.preventDefault();
+		$('.user-form').removeClass('slide-up').addClass('slide-down');
+		$(this).removeClass('active').addClass('inactive');
+	});
+
+	$('.close-slide').on('click', function(e){
+		e.preventDefault();
+		$('#search-wrapper .user-form').removeClass('slide-down').addClass('slide-up');
+		$('a.open-slide').removeClass('inactive').addClass('active');
+	});
 
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
@@ -75,6 +89,7 @@ $(document).ready(function() {
 
 	function loadBackground(lLatitude, lLongitude, lTag) {
 		$('.inner #weather-results').css('background-image','none');
+		$('.inner #weather-results').css('background-color','#ffffff');
 		console.log(lLatitude);
 		console.log(lLongitude);
 		console.log(lTag);
@@ -96,7 +111,9 @@ $(document).ready(function() {
 				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
 				console.log(imgUrl);
 				$('.inner #weather-results').css('background-image','url('+imgUrl+')');
-				$('.inner #weather-results').css('background-size','cover');
+				$('.inner #weather-results').css('background-size','100% 100%');
+			}else{
+				$('.inner #weather-results').css('background-color','#928BC2');
 			}
 			$('.user-form').children('input').val('')	
 	    });
@@ -144,13 +161,21 @@ $(document).ready(function() {
 		console.log('Hola!');
 	});
 
-	$('#user-location').on('keypress',function (){
-		getCities();
+	$('#user-location').on('keyup',function (){
+		var keyEntered = $(this).val();
+		if (keyEntered == ''){
+			$('ul#city-results').empty();
+			$('#results').removeClass('show-results').addClass('hide-results');
+			$('#user-search').get[0].reset()
+		}else{
+			getCities();
+		}
 	})
 
 	getWeather();
 
 	$('.button-results').on('click',function(){
-		$('#weather-results').removeClass('show-results').addClass('hide-results');
+		 $('#weather-results').removeClass('show-results').addClass('hide-results');
 	})
+
 }); // End of doc ready. 	

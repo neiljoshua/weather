@@ -4,6 +4,7 @@
 		<title>Weather Web App</title>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<link href='https://fonts.googleapis.com/css?family=Raleway:100,300,500,600,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="styles/fontello.css">
 		<link rel="stylesheet" type="text/css" href="styles/style.css">
 		<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 		<script src="js/jquery-1.9.1.min.js"></script> 
@@ -11,16 +12,21 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<div class="weather-search" >
-				<h1 class="title"> Weather Around the World</h1>
-				<form class="user-form" action="search" >
-					<input id="user-location" type="city_name"  autocomplete = "off" name="city_name" placeholder="City, State">
-					<div id="results">
-						<ul id="city-results">
-						</ul>
-					</div>
-				</form>
+			<div id="search-wrapper" >
+				<div class="user-form">
+					<form id="user-search" action="search" >
+						<input id="user-location" type="city_name"  autocomplete = "off" name="city_name" placeholder="City, State">
+						<div id="results">
+							<ul id="city-results">
+							</ul>
+						</div>
+					</form>
+					<a href="#" class="close-slide"><i class="demo-icon icon-up-open"></i></a>
+				</div>
 			</div>
+
+			<a href="#" class="open-slide"> Locations <i class="demo-icon  icon-down-open"></i></a>
+
 			<div class="inner">
 				<!--Window that shows user search results -->
 				<div id="weather-results" >
@@ -54,4 +60,4 @@
 			</div>	
 		</div>
 	</body>
-</hmtl>
+</html>
