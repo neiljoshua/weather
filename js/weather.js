@@ -101,7 +101,7 @@ $(document).ready(function() {
 		console.log(lLongitude);
 		console.log(lTag);
 		var Key = '2212bc8253d6f3ed04b9e18ee5ddaa51';
-		var flickrApi = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&accuracy=1&tags="+lTag+"&sort=relevance&format=json&jsoncallback=?";
+		var flickrApi = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&accuracy=1&tags="+lTag+"%2C"+"weather"+"&sort=relevance&page=1&format=json&jsoncallback=?";
 		var url = flickrApi + '&cb=?';
 	    $.getJSON(url,function (jsonp){
 	    	$('#json-results').html(JSON.stringify(jsonp, null, 1));
@@ -115,7 +115,7 @@ $(document).ready(function() {
 				var photoServer = randomPhoto.server;
 				var photoFarm = randomPhoto.farm;
 				var photoSecret = randomPhoto.secret;
-				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_m.jpg";
+				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_c.jpg";
 				console.log(imgUrl);
 				$('.inner #weather-results div').css('background-image','url('+imgUrl+')');
 				$('.inner #weather-results div').css('background-size','100% 100%');
