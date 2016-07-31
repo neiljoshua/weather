@@ -12,20 +12,20 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<div id="search-wrapper" >
-				<div class="user-form">
+			<header>
+				<div id="search-wrapper">
 					<form id="user-search" action="search" >
-						<input id="user-location" type="city_name"  autocomplete = "off" name="city_name" placeholder="City, State">
+						<input id="user-location" type="text"  autocomplete = "off" name="city_name" placeholder="City, State">
 						<div id="results">
-							<ul id="city-results">
+							<ul id="city-list">
 							</ul>
 						</div>
 					</form>
-					<a href="#" class="close-slide"><i class="demo-icon icon-up-open"></i></a>
+					<a href="#" class="close-header"><i class="demo-icon icon-up-open"></i></a>
 				</div>
-			</div>
+			</header>
 
-			<a href="#" class="open-slide"> Locations <i class="demo-icon  icon-down-open"></i></a>
+			<a href="#" class="show-header"> Locations <i class="demo-icon  icon-down-open"></i></a>
 
 			<div class="inner">
 				<!--Window that shows user search results -->
@@ -33,38 +33,32 @@
 					<div>
 						<h1> Current Weather at <span id="location-results"> </span></h1>
 						<p>Feels like <span id="temp-results"> </span></p>
-						<button class="button-results">CLose</button>
+						<button class="button-results">Close</button>
 					</div>	
 				</div>
 				<!--End of window search result -->
-				<div class="weather-block" data-city='lima' data-state="PE">
-					<div>
-						<h1>Weather at <span class="location"> </span></h1>
-						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
-						<p>Wind: <span class="wind"></span></p>
+				<div class="weather-blocks">
+					<div class="weather-block" data-city='lima' data-state="PE">
+							<h1>Weather at <span class="location"> </span></h1>
+							<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+							<p>Wind: <span class="wind"></span></p>
+			 		</div>
+			
+					<div class="weather-block" data-city="los_angeles" data-state="CA">
+							<h1>Weather at <span class="location"> </span></h1>
+							<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+							<p>Wind: <span class="wind"></span></p>		
+					</div>
+					<div class="weather-block" data-city="chicago" data-state="IL">
+							<h1>Weather at <span class="location"> </span></h1>
+							<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+							<p>Wind: <span class="wind"></span></p>
 					</div>	
-		 		</div>
-		
-				<div class="weather-block" data-city="los_angeles" data-state="CA">
-					<div>
-						<h1>Weather at <span class="location"> </span></h1>
-						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
-						<p>Wind: <span class="wind"></span></p>
-					</div>	
-				</div>
-				<div class="weather-block" data-city="chicago" data-state="IL">
-					<div>
-						<h1>Weather at <span class="location"> </span></h1>
-						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
-						<p>Wind: <span class="wind"></span></p>
-					</div>	
-				</div>	
-				<div class="weather-block" data-city="miami" data-state="FL">
-					<div>
-						<h1>Weather at <span class="location"> </span></h1>
-						<p><span class="temp"> </span> F And <span class="desc"> </span></p>
-						<p>Wind: <span class="wind"></span></p>
-					</div>	
+					<div class="weather-block" data-city="miami" data-state="FL">
+							<h1>Weather at <span class="location"> </span></h1>
+							<p><span class="temp"> </span> F And <span class="desc"> </span></p>
+							<p>Wind: <span class="wind"></span></p>
+					</div>
 				</div>
 				<div class="clear"> </div>
 			</div>	
