@@ -64,8 +64,8 @@ $(document).ready(function() {
 		        cityName = locations.RESULTS[i].name;
 		    	line = locations.RESULTS[i].l;
 		    	$('ul#city-list').append('<li><a href="#" class="filter-city" data-url="'+line+'">' +cityName+ '</a></li>');
-			    $('#results').removeClass('hide-results').addClass('show-results');
-				$('#results').focus();
+				$('#results').removeClass('hide-results').addClass('show-results');
+				$("#city-list li:first-child").prop('selected'. true);
 		    }
 		});
 	}		
@@ -177,7 +177,7 @@ $(document).ready(function() {
 			//$('#user-search').get[0].reset()
 		}else{
 			getCities();
-			$('results').empty();
+			$('ul#city-list').empty();
 		}
 	})
 
@@ -187,11 +187,11 @@ $(document).ready(function() {
 		 $('#weather-results').removeClass('show-results').addClass('hide-results');
 	});
 
-	// $('#user-location').blur(function(){
-	// 	$('#results').removeClass('show-results').addClass('hide-results');
-	// });
-	// $('#user-location:text').focusin(function(){
-	// 	$('#results').removeClass('hide-results').addClass('show-results');
-	// });
+	$('#user-location').blur(function(){
+		$('#results').removeClass('show-results').addClass('hide-results');
+	});
+	$('#user-location:text').focusin(function(){
+		$('#results').removeClass('hide-results').addClass('show-results');
+	});
 
 }); // End of doc ready. 	

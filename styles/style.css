@@ -27,11 +27,19 @@ ul{ list-style-type: none ; background-color: #fff;}
 	font-weight: 300;
 	font-size: 30px;
 	text-align: center;
-	color: #45ADC3;
+	color: #7D1D3F;
 }
 
 .show-header i{
 	font-size: 20px;
+}
+
+.close-header {
+	position: absolute;
+	right: 20px;
+	bottom:10px;
+	font-size: 35px;
+	color: #fff;
 }
 
 header {
@@ -79,14 +87,6 @@ input:focus:-ms-input-placeholder {
    color: transparent;
 }
 
-.close-header {
-	position: absolute;
-	right: 20px;
-	bottom:10px;
-	font-size: 35px;
-	color: #fff;
-}
-
 #results {
 	display: block;
 	margin: 0 auto;
@@ -107,6 +107,10 @@ input:focus:-ms-input-placeholder {
 	color: #1a1a1a;
 }
 
+#results li a:hover, #results li.active a{
+	background-color:#84ACCE;
+	color:#fff; 
+}
 
 /*-- part showig results-*/
 .inner{
@@ -166,6 +170,7 @@ input:focus:-ms-input-placeholder {
 	height: 300px;
 	overflow: hidden;
 	margin-bottom: 10px;
+	border-radius: 10px;
 }
 
 .inner .weather-block:nth-child(1), .inner .weather-block:nth-child(4) {
