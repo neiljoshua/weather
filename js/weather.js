@@ -20,33 +20,55 @@ $(document).ready(function() {
  //    });
 
 	//Calls weather for each div.
-	// $('.weather-block').each(function() {
-	// 	var element = $(this);
-	//     var state = $(this).data('state');
-	//     var city = $(this).data('city');	
- 	//        var key = '6d21846ad7649b70';
-	//        var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
-	//     //console.log(Weather); 
- 	//       $.ajax({
-	// 	        url : Weather,
-	//      	dataType : "jsonp",
-	//     	    success : function(results) {
-	// 				var location = results.current_observation.display_location.full;
-	// 				//console.log(location);
-	// 				var temp = results.current_observation.feelslike_f;
-	// 				var img = results.current_observation.icon_url;
-	// 				var desc = results.current_observation.weather;
-	// 				var wind = results.current_observation.wind_string;
-	// 				//var test = $(this).find('.location').html(location);
-	// 				element.find('.location').html(location);
-	// 				element.find('.temp').html(temp);
-	// 				element.find('.desc').html(desc);
-	// 				element.find('.wind').html(wind);
-	// 				element.find('.img').attr('src', img);
-	// 		    }				
-	// 	   });	    
-	// })
+	$('.weather-block').each(function() {
+		var element = $(this);
+	    var state = $(this).data('state');
+	    var city = $(this).data('city');	
+ 	       var key = '6d21846ad7649b70';
+	       var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
+	    //console.log(Weather); 
+ 	      $.ajax({
+		        url : Weather,
+	     	dataType : "jsonp",
+	    	    success : function(results) {
+					var location = results.current_observation.display_location.full;
+					//console.log(location);
+					var temp = results.current_observation.feelslike_f;
+					var img = results.current_observation.icon_url;
+					var desc = results.current_observation.weather;
+					var wind = results.current_observation.wind_string;
+					//var test = $(this).find('.location').html(location);
+					element.find('.location').html(location);
+					element.find('.temp').html(temp);
+					element.find('.desc').html(desc);
+					element.find('.wind').html(wind);
+					element.find('.icon').addClass(Icons[desc]);
+			    }				
+		   });	    
+	})
+
+	var Icons = {
+		"Partly Cloudy": "icon-cloud-sun",
+		"Cloudy":"icon-clouds",
+		"Chance of Flurries":"icon-snow-alt",
+		"Chance of Rain":"icon-rain",
+		"Freezing Rain":"icon-hail",
+		"Rain":"icon-rain",
+		"Sleet":"icon-hail",
+		"Snow":"icon-snow",
+		"Sunny":"icon-sun",
+		"Thunderstorms":"icon-clouds-flash-alt",	
+		"Thunderstorm":"icon-clouds-flash",
+		"Unkown":'icon-help-circled-alt',
+		"Scattered Clouds":"icon-cloud-sun",
+		"Clear":"icon-sun",
+		"Mostly Cloudy":"icon-clouds",
+	}
+
+	// var weatherTag = "Partly Cloudy";
 	
+// console.log(Icons[weatherTag]);
+
 	function getCities() {
 		$('ul#city-list').empty();
 		var cityName ='';
@@ -60,13 +82,24 @@ $(document).ready(function() {
 		    var locations = JSON.stringify(jsonp, null, 1);
 		    locations = JSON.parse(locations);
 
+		   $("#city-list li:first-child").addClass('selected');
+
 		    for (var i = 0; i < locations.RESULTS.length; i++) { 
 		        cityName = locations.RESULTS[i].name;
 		    	line = locations.RESULTS[i].l;
 		    	$('ul#city-list').append('<li><a href="#" class="filter-city" data-url="'+line+'">' +cityName+ '</a></li>');
 				$('#results').removeClass('hide-results').addClass('show-results');
-				$("#city-list li:first-child").prop('selected'. true);
 		    }
+		    $("#city-list li").hover(function(){
+		   		$("#city-list li").removeClass('selected');
+		   		$(this).addClass('selected');
+		   })
+		    $('#city-results li').keyup(function (e) {
+				if (e.keyCode == 40) {
+					alert('Enter key pressed!');
+				}
+				$('.selected').next().addClass('selected');
+			});
 		});
 	}		
 
@@ -125,6 +158,7 @@ $(document).ready(function() {
 				  locationLat = results.current_observation.display_location.latitude;
 				  locationLon = results.current_observation.display_location.longitude;
 				  weatherTag = results.current_observation.weather;
+				  console.log('weather', weatherTag);
 				  var location = results.current_observation.display_location.full;
 				  var flickrLocation = location.split(',');
 				  flickrCity = flickrLocation[0];
@@ -132,10 +166,10 @@ $(document).ready(function() {
 				  loadBackground(locationLat, locationLon, flickrCity, flickrCountry);
 				  updateInput(location);
 				  var temp = results.current_observation.feelslike_f;
-				  var img = results.current_observation.icon_url;
 				  element.find('#location-results').html(location);
 				  element.find('#icon-results').attr('src', img);
 				  element.find('#temp-results').html(temp);
+				 
 			  	}
 		    });
 
@@ -148,7 +182,7 @@ $(document).ready(function() {
 
 	$('.show-header').on('click',function(e){
 		e.preventDefault();
-		$('close-header').removeClass('active').addClass('inactive');
+		$('close-header').removeClass('inactive').addClass('active');
 		$('#search-wrapper').removeClass('inactive').addClass('active');
 		$(this).removeClass('active').addClass('inactive');
 	});
