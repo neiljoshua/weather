@@ -97,6 +97,11 @@ input:focus:-ms-input-placeholder {
 	text-transform: uppercase;
 	color: #7D1D3F;
 	font-size: 15px;
+	z-index: 3;
+}
+
+.beta-msg.white-color{
+	color:#fff;
 }
 
 #results {
@@ -157,6 +162,14 @@ input:focus:-ms-input-placeholder {
 	right :25px;
 	bottom: 25px;
 	font-size: 35px;
+	color: #fff;
+}
+
+.more-info {
+	position: absolute;
+	left :25px;
+	bottom: 25px;
+	font-size: 60px;
 	color: #fff;
 }
 

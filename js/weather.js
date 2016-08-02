@@ -163,10 +163,10 @@ $(document).ready(function() {
 				  flickrCountry = flickrLocation[1];
 				  loadBackground(locationLat, locationLon, flickrCity, flickrCountry);
 				  updateInput(location);
-				  var temp = results.current_observation.feelslike_f;
-				  element.find('#location-results').html(location);
+				  var temp = Math.round(results.current_observation.feelslike_f);
+				  element.find('.location-results').html(location);
 				  //element.find('#icon-results').attr('src', img);
-				  element.find('#temp-results').html(temp);
+				  element.find('.temp-results').html(temp);
 				 
 			  	}
 		    });
@@ -182,11 +182,13 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('#search-wrapper').removeClass('inactive').addClass('active');
 		$(this).removeClass('active').addClass('inactive');
+		$('.beta-msg').addClass('white-color');
 	});
 
 	$('.close-header').on('click', function(e){
 		e.preventDefault();	
 		$(this).removeClass('inactive').addClass('active');
+		$('.beta-msg').removeClass('white-color');
 		$('#user-search').find('input').val('');
 		$('ul#city-list').empty();
 		$('#results').removeClass('show-results').addClass('hide-results');
