@@ -20,32 +20,30 @@ $(document).ready(function() {
  //    });
 
 	//Calls weather for each div.
-	// $('.weather-block').each(function() {
-	// 	var element = $(this);
-	//     var state = $(this).data('state');
-	//     var city = $(this).data('city');	
- // 	       var key = '6d21846ad7649b70';
-	//        var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
-	//     //console.log(Weather); 
- // 	      $.ajax({
-	// 	    url : Weather,
-	//      	dataType : "jsonp",
-	//     	    success : function(results) {
-	// 				var location = results.current_observation.display_location.full;
-	// 				//console.log(location);
-	// 				var temp = results.current_observation.feelslike_f;
-	// 				var img = results.current_observation.icon_url;
-	// 				var desc = results.current_observation.weather;
-	// 				var wind = results.current_observation.wind_string;
-	// 				//var test = $(this).find('.location').html(location);
-	// 				element.find('.location').html(location);
-	// 				element.find('.temp').html(temp);
-	// 				element.find('.desc').html(desc);
-	// 				element.find('.wind').html(wind);
-	// 				element.find('.icon').addClass(Icons[desc]);
-	// 		    }				
-	// 	   });	    
-	// })
+	$('.weather-block').each(function() {
+		var element = $(this);
+	    var state = $(this).data('state');
+	    var city = $(this).data('city');	
+ 	       var key = '6d21846ad7649b70';
+	       var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
+	    //console.log(Weather); 
+ 	      $.ajax({
+		    url : Weather,
+	     	dataType : "jsonp",
+	    	    success : function(results) {
+					var location = results.current_observation.display_location.full;
+					var temp = results.current_observation.feelslike_f;
+					//var img = results.current_observation.icon_url;
+					var desc = results.current_observation.weather;
+					var icon =results.current_observation.icon;
+					console.log(icon);
+					element.find('.location').html(location);
+					element.find('.temp').html(temp);
+					element.find('.desc').html(desc);
+					element.find('.icon').addClass(Icons[desc]);
+			    }				
+		   });	    
+	})
 
 	var Icons = {
 		"Partly Cloudy": "icon-cloud-sun",
@@ -110,7 +108,7 @@ $(document).ready(function() {
 		var Key = '2212bc8253d6f3ed04b9e18ee5ddaa51';
 		var flickrApi = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&tags="+lTag+"%2C"+lTag2+"%2C"+"landscape"+"%2C"+"street"+"&sort=relevance&page=1&in_gallery=true&format=json&jsoncallback=?";
 		var url = flickrApi + '&cb=?';
-		//console.log(url);
+		console.log(url);
 	    $.getJSON(url,function (jsonp){
 	    	$('#json-results').html(JSON.stringify(jsonp, null, 1));
 	    	var results = JSON.stringify(jsonp, null, 1);
@@ -156,7 +154,8 @@ $(document).ready(function() {
 				  locationLat = results.current_observation.display_location.latitude;
 				  locationLon = results.current_observation.display_location.longitude;
 				  weatherTag = results.current_observation.weather;
-				  //console.log('weather', weatherTag);
+				  wetherIcon = results.current_observation.icon;
+				  console.log('weather', weatherTag);
 				  var location = results.current_observation.display_location.full;
 				  var flickrLocation = location.split(',');
 				  flickrCity = flickrLocation[0];
