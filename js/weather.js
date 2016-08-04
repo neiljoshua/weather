@@ -20,6 +20,7 @@ $(document).ready(function() {
  //    });
 
 	//Calls weather for each div.
+<<<<<<< HEAD
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
 	//     var state = $(this).data('state');
@@ -46,6 +47,32 @@ $(document).ready(function() {
 	// 		    }				
 	// 	   });	    
 	// })
+=======
+	$('.weather-block').each(function() {
+		var element = $(this);
+	    var state = $(this).data('state');
+	    var city = $(this).data('city');	
+ 	       var key = '6d21846ad7649b70';
+	       var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
+	    //console.log(Weather); 
+ 	      $.ajax({
+		    url : Weather,
+	     	dataType : "jsonp",
+	    	    success : function(results) {
+					var location = results.current_observation.display_location.full;
+					var temp = results.current_observation.feelslike_f;
+					//var img = results.current_observation.icon_url;
+					var desc = results.current_observation.weather;
+					var icon =results.current_observation.icon;
+					console.log(icon);
+					element.find('.location').html(location);
+					element.find('.temp').html(temp);
+					element.find('.desc').html(desc);
+					element.find('.icon').addClass(Icons[desc]);
+			    }				
+		   });	    
+	})
+>>>>>>> develop
 
 	var Icons = {
 		"Partly Cloudy": "icon-cloud-sun",
@@ -156,7 +183,12 @@ $(document).ready(function() {
 				  locationLat = results.current_observation.display_location.latitude;
 				  locationLon = results.current_observation.display_location.longitude;
 				  weatherTag = results.current_observation.weather;
+<<<<<<< HEAD
 				  //console.log('weather', weatherTag);
+=======
+				  wetherIcon = results.current_observation.icon;
+				  console.log('weather', weatherTag);
+>>>>>>> develop
 				  var location = results.current_observation.display_location.full;
 				  var flickrLocation = location.split(',');
 				  flickrCity = flickrLocation[0];

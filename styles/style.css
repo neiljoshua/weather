@@ -29,7 +29,7 @@ ul {
 
 header .show-header{
 	position: absolute;
-    top: 30px;
+    top: 40px;
     right: 0;
     left: 0;
 	display: block;
@@ -56,7 +56,7 @@ header .show-header{
 	position: absolute;
 	display: block;
 	width: 100%;
-	height: 90px;
+	height: 100px;
 	opacity: 0;
 	visibility: hidden;
 	background-color: #44344F;
@@ -64,7 +64,7 @@ header .show-header{
 }
 
 #user-location{
-	margin-top: 30px;
+	margin-top: 40px;
 	height: 25px;
     width: 200px;
     border-radius: 10px;
@@ -92,8 +92,8 @@ input:focus:-ms-input-placeholder {
 
 .beta-msg {
 	position: absolute;
-	top: 20px;
-	left: 40px;
+	top: 15px;
+	left: 20px;
 	text-transform: uppercase;
 	color: #7D1D3F;
 	font-size: 15px;
@@ -175,7 +175,7 @@ input:focus:-ms-input-placeholder {
 
 .weather-block{
 	float: left;
-	width: 48%;
+	width: 49%;
 	height: 300px;
 	margin-bottom: 10px;
 	border-radius: 10px;
@@ -226,7 +226,7 @@ input:focus:-ms-input-placeholder {
 .show-header.active, #search-wrapper.active {
 	visibility: visible;
 	opacity: 1;
-	height: 90px;
+	height: 100px;
 	transition: 0.6s ease-in-out .5s;
 }
 
