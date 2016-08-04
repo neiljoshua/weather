@@ -20,7 +20,6 @@ $(document).ready(function() {
  //    });
 
 	//Calls weather for each div.
-<<<<<<< HEAD
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
 	//     var state = $(this).data('state');
@@ -47,7 +46,7 @@ $(document).ready(function() {
 	// 		    }				
 	// 	   });	    
 	// })
-=======
+
 	$('.weather-block').each(function() {
 		var element = $(this);
 	    var state = $(this).data('state');
@@ -72,7 +71,6 @@ $(document).ready(function() {
 			    }				
 		   });	    
 	})
->>>>>>> develop
 
 	var Icons = {
 		"Partly Cloudy": "icon-cloud-sun",
@@ -91,10 +89,6 @@ $(document).ready(function() {
 		"Clear":"icon-sun",
 		"Mostly Cloudy":"icon-clouds",
 	}
-
-	// var weatherTag = "Partly Cloudy";
-	
-// console.log(Icons[weatherTag]);
 
 	function getCities() {
 		$('ul#city-list').empty();
@@ -183,12 +177,9 @@ $(document).ready(function() {
 				  locationLat = results.current_observation.display_location.latitude;
 				  locationLon = results.current_observation.display_location.longitude;
 				  weatherTag = results.current_observation.weather;
-<<<<<<< HEAD
 				  //console.log('weather', weatherTag);
-=======
 				  wetherIcon = results.current_observation.icon;
 				  console.log('weather', weatherTag);
->>>>>>> develop
 				  var location = results.current_observation.display_location.full;
 				  var flickrLocation = location.split(',');
 				  flickrCity = flickrLocation[0];
