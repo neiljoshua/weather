@@ -105,6 +105,7 @@ input:focus:-ms-input-placeholder {
 }
 
 #results {
+	position: relative;
 	display: block;
 	margin: 0 auto;
 	max-height: 200px;
@@ -113,6 +114,7 @@ input:focus:-ms-input-placeholder {
 	background-color: #fff;	
 	opacity: 0;
 	visibility: hidden;
+	z-index: 4;
 }
 
 
@@ -197,7 +199,7 @@ input:focus:-ms-input-placeholder {
 	margin-right: 1.5%;
 }
 
-.weather-block h1, .weather-block p{
+.weather-block h2, .weather-block p{
 	font-size: 20px;
 	font-weight: 300;
 	padding: 35px;
@@ -252,7 +254,7 @@ input:focus:-ms-input-placeholder {
 	right: 0;
 	left: 0;
 	transition: 0.6s 0.4s ease-in-out;
-	z-index: 1;
+	z-index: 4;
 }
 
 

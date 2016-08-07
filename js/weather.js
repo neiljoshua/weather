@@ -193,7 +193,7 @@ $(document).ready(function() {
 				 
 			  	}
 		    });
-
+		$('ul#city-list').empty();	
 	    $('.weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
 		});
@@ -233,7 +233,6 @@ $(document).ready(function() {
 			//$('#user-search').get[0].reset()
 		}else{
 			getCities();
-			$('ul#city-list').empty();
 		}
 	})
 
