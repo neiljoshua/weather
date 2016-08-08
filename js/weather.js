@@ -20,37 +20,39 @@ $(document).ready(function() {
  //    });
 
 	//Calls weather for each div.
-	$('.weather-block').each(function() {
-		var element = $(this);
-	    var state = $(this).data('state');
-	    var city = $(this).data('city');	
- 	       var key = '6d21846ad7649b70';
-	       var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
-	    //console.log(Weather); 
- 	      $.ajax({
-		    url : Weather,
-	     	dataType : "jsonp",
-	    	    success : function(results) {
-					var location = results.current_observation.display_location.full;
-					var temp = results.current_observation.feelslike_f;
-					//var img = results.current_observation.icon_url;
-					var desc = results.current_observation.weather;
-					var icon =results.current_observation.icon;
-					console.log(icon);
-					element.find('.location').html(location);
-					element.find('.temp').html(temp);
-					element.find('.desc').html(desc);
-					element.find('.icon').addClass(Icons[desc]);
-			    }				
-		   });	    
-	})
+	// $('.weather-block').each(function() {
+	// 	var element = $(this);
+	//     var state = $(this).data('state');
+	//     var city = $(this).data('city');	
+ // 	       var key = '6d21846ad7649b70';
+	//        var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
+	//     //console.log(Weather); 
+ // 	      $.ajax({
+	// 	    url : Weather,
+	//      	dataType : "jsonp",
+	//     	    success : function(results) {
+	// 				var location = results.current_observation.display_location.full;
+	// 				var temp = results.current_observation.feelslike_f;
+	// 				//var img = results.current_observation.icon_url;
+	// 				var desc = results.current_observation.weather;
+	// 				var icon =results.current_observation.icon;
+	// 				console.log(icon);
+	// 				element.find('.location').html(location);
+	// 				element.find('.temp').html(temp);
+	// 				element.find('.desc').html(desc);
+	// 				element.find('.icon').addClass(Icons[desc]);
+	// 		    }				
+	// 	   });	    
+	// })
 
 	var Icons = {
+		"Drizzle":'icon-rain',
 		"Light Drizzle":"icon-rain",
 		"Heavey Drizzle":"icon-rain",
-		"Drizzle":'icon-rain',
+		"Rain":"icon-rain",
 		"Light Rain":"icon-rain",
 		"Heavy Rain":"icon-rain",
+		"Snow":"icon-snow",
 		"Light Snow":"icon-snow",
 		"Heavy Snow":"icon-snow",
 		"Light Snow Grains":"icon-snow",
@@ -143,14 +145,36 @@ $(document).ready(function() {
 		"Thunderstorm and Rain":"icon-clouds-flash",
 		"Light Thunderstorm and Rain":"icon-clouds-flash",
 		"Heavy Thunderstorm and Rain":"icon-clouds-flash",
+		"Thunderstorm and Snow":"icon-clouds-flash",
+		"Light Thunderstorm and Snow":"icon-clouds-flash",
+		"Heavy Thunderstorm and Snow":"icon-clouds-flash",
+		"Thunderstorm and Ice Pellets":"icon-clouds-flash",
+		"Light Thunderstorm and Ice Pellets":"icon-clouds-flash",
+		"Heavy Thunderstorm and Ice Pellets":"icon-clouds-flash",
+		"Thunderstorm and Hail":"icon-clouds-flash",
+		"Light Thunderstorm and Hail":"icon-clouds-flash",
+		"Heavy Thunderstorm and Hail":"icon-clouds-flash",
+		"Freezing Drizzle":"icon-rain",
+		"Light Freezing Drizzle":"icon-rain",
+		"Heavy Freezing Drizzle":"icon-rain",
+		"Freezing Rain":"icon-rain",
+		"Light Freezing Rain":"icon-rain",
+		"Heavy Freezing Rain":"icon-rain",
+		"Freezing Fog":"icon-clouds",
+		"Light Freezing Fog":"icon-clouds",
+		"Heavy Freezing Fog":"icon-clouds",
+		"Patches of Fog":"icon-clouds"
+		"Shallow Fog":"icon-clouds",
+		"Partial Fog":"icon-cloud-sun",
+		"Overcast":"icon-sun";
+		"Scattered Clouds":"icon-cloud-sun",
+		"Small Hail":"icon-hail",
 		"Partly Cloudy": "icon-cloud-sun",
 		"Cloudy":"icon-clouds",
 		"Chance of Flurries":"icon-snow-alt",
 		"Chance of Rain":"icon-rain",
 		"Freezing Rain":"icon-hail",
-		"Rain":"icon-rain",
 		"Sleet":"icon-hail",
-		"Snow":"icon-snow",
 		"Sunny":"icon-sun",
 		"Thunderstorms":"icon-clouds-flash-alt",	
 		"Thunderstorm":"icon-clouds-flash",

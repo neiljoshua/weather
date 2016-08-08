@@ -2,9 +2,8 @@
 
 @media (max-width: 768px){
 	.inner{
-		width: 100%;
+		width: 90%;
 		margin: 0 auto;
-
 	}
 }
 
@@ -12,7 +11,6 @@
 	.weather-block{
 		float:none;
 		width: 100%;
-		margin: 0 0 20px 0;
-
+		margin-bottom: 10px;
 	}
 }
