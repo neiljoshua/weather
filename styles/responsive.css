@@ -14,3 +14,11 @@
 		margin-bottom: 10px;
 	}
 }
+
+@media screen and (max-width: 640px) { 
+
+	.weather-results {
+		height: 75vh;
+		margin-bottom: 15vh;
+	}
+}

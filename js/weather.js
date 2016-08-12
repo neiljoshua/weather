@@ -20,30 +20,30 @@ $(document).ready(function() {
  //    });
 
 	//Calls weather for each div.
-	$('.weather-block').each(function() {
-		var element = $(this);
-	    var state = $(this).data('state');
-	    var city = $(this).data('city');	
- 	       var key = '6d21846ad7649b70';
-	       var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
-	    //console.log(Weather); 
- 	      $.ajax({
-		    url : Weather,
-	     	dataType : "jsonp",
-	    	    success : function(results) {
-					var location = results.current_observation.display_location.full;
-					var temp = results.current_observation.feelslike_f;
-					//var img = results.current_observation.icon_url;
-					var desc = results.current_observation.weather;
-					var icon =results.current_observation.icon;
-					console.log(icon);
-					element.find('.location').html(location);
-					element.find('.temp').html(temp);
-					element.find('.desc').html(desc);
-					element.find('.icon').addClass(Icons[desc]);
-			    }				
-		   });	    
-	})
+	// $('.weather-block').each(function() {
+	// 	var element = $(this);
+	//     var state = $(this).data('state');
+	//     var city = $(this).data('city');	
+ // 	       var key = '6d21846ad7649b70';
+	//        var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
+	//     //console.log(Weather); 
+ // 	      $.ajax({
+	// 	    url : Weather,
+	//      	dataType : "jsonp",
+	//     	    success : function(results) {
+	// 				var location = results.current_observation.display_location.full;
+	// 				var temp = results.current_observation.feelslike_f;
+	// 				//var img = results.current_observation.icon_url;
+	// 				var desc = results.current_observation.weather;
+	// 				var icon =results.current_observation.icon;
+	// 				console.log(icon);
+	// 				element.find('.location').html(location);
+	// 				element.find('.temp').html(temp);
+	// 				element.find('.desc').html(desc);
+	// 				element.find('.icon').addClass(Icons[desc]);
+	// 		    }				
+	// 	   });	    
+	// })
 
 	var Icons = {
 		"Drizzle":"icon-rain",
@@ -210,14 +210,25 @@ $(document).ready(function() {
 				$('#results').removeClass('hide-results').addClass('show-results');
 		    }
 		    $("#city-list li").hover(function(){
-		   		$("#city-list li").removeClass('selected');
+		   		$('#city-list li').removeClass('selected');
 		   		$(this).addClass('selected');
-		   })
+		   });
+
 		    $('#city-results li').keyup(function (e) {
+		    	var elem = $(this);
 				if (e.keyCode == 40) {
 					alert('Enter key pressed!');
 				}
-				$('.selected').next().addClass('selected');
+				else if (e.keyCode == 39){
+					$('.selected').next().addClass('selected');
+					$(elem).focus();
+					alert('Key down selected');
+				}
+				else if (e.keyCode == 38){
+					$('.selected').prev().addClass('selected');
+					$(elem).focus();
+					alert('Key Up selected');
+				}
 			});
 		});
 	}		
@@ -317,6 +328,8 @@ $(document).ready(function() {
 	});
 
 
+	// Starts searching on #user-search input.
+
 	$('#user-search').submit(function( event ){
 		event.preventDefault();
 		console.log('Hola!');
@@ -340,11 +353,12 @@ $(document).ready(function() {
 		 $('.weather-results').removeClass('show-results').addClass('hide-results');
 	});
 
-	$('#user-location').blur(function(){
-		$('#results').removeClass('show-results').addClass('hide-results');
-	});
-	$('#user-location:text').focusin(function(){
-		$('#results').removeClass('hide-results').addClass('show-results');
-	});
+	// $('#user-location').blur(function(){
+	// 	$('#results').removeClass('show-results').addClass('hide-results');
+	// });
+
+	// $('#user-location:text').focusin(function(){
+	// 	$('#results').removeClass('hide-results').addClass('show-results');
+	// });
 
 }); // End of doc ready. 	
