@@ -185,7 +185,50 @@ $(document).ready(function() {
 	}
 
 	// var weatherTag = "Partly Cloudy";
-	
+
+            function toggleResults() {
+            	var $listItems = $('li');
+
+				$('input').keydown(function(e)
+				{
+				    var key = e.keyCode,
+				        $selected = $listItems.filter('.selected'),
+				        $current;
+
+				    if ( key != 40 && key != 38 ) return;
+
+				    $listItems.removeClass('selected');
+
+				    if ( key == 40 ) // Down key
+				    {
+				        if ( ! $selected.length || $selected.is(':last-child') ) {
+				            $current = $listItems.eq(0);
+				        }
+				        else {
+				            $current = $selected.next();
+				        }
+				    }
+				    else if ( key == 38 ) // Up key
+				    {
+				        if ( ! $selected.length || $selected.is(':first-child') ) {
+				            $current = $listItems.last();
+				        }
+				        else {
+				            $current = $selected.prev();
+				        }
+				    }
+				    // else if ( key == 13 )
+				    // {
+				    // 	e.preventDefault();
+				    // 	alert('pressed Enter Key');
+				    // 	// var cityLink = $selected.children('a').data('url');
+				    // 	// console.log('cityLink',cityLink);
+				    // }
+
+				    $current.addClass('selected').focus();
+				});
+        }
+
 // console.log(Icons[weatherTag]);
 
 	function getCities() {
@@ -196,41 +239,26 @@ $(document).ready(function() {
 		var element = $('#weather-results');
 		var Weather = "http://autocomplete.wunderground.com/aq?query=" + city + "&h=0" ;
 	    var url = Weather + '&cb=?';
-			$.getJSON(url, function(jsonp){
+		$.getJSON(url, function(jsonp){
 		    $('#json-results').html(JSON.stringify(jsonp, null, 1));
 		    var locations = JSON.stringify(jsonp, null, 1);
 		    locations = JSON.parse(locations);
 
-		   $("#city-list li:first-child").addClass('selected');
-
 		    for (var i = 0; i < locations.RESULTS.length; i++) { 
-		        cityName = locations.RESULTS[i].name;
-		    	line = locations.RESULTS[i].l;
-		    	$('ul#city-list').append('<li><a href="#" class="filter-city" data-url="'+line+'">' +cityName+ '</a></li>');
-				$('#results').removeClass('hide-results').addClass('show-results');
-		    }
-		    $("#city-list li").hover(function(){
+	            cityName = locations.RESULTS[i].name;
+	            line = locations.RESULTS[i].l;
+	         
+	            $('ul#city-list').append('<li value= "'+i+'" > <a href="#" class="filter-city" data-url="'+line+'">' +cityName+ '</a></li>');
+	            $('#results').removeClass('hide-results').addClass('show-results');
+	        }
+	      
+	        toggleResults();
+		    
+		    $("#city-list li").hover(function() {
 		   		$('#city-list li').removeClass('selected');
 		   		$(this).addClass('selected');
-		   });
-
-		    $('#city-results li').keyup(function (e) {
-		    	var elem = $(this);
-				if (e.keyCode == 40) {
-					alert('Enter key pressed!');
-				}
-				else if (e.keyCode == 39){
-					$('.selected').next().addClass('selected');
-					$(elem).focus();
-					alert('Key down selected');
-				}
-				else if (e.keyCode == 38){
-					$('.selected').prev().addClass('selected');
-					$(elem).focus();
-					alert('Key Up selected');
-				}
-			});
-		});
+		    });
+		});    
 	}		
 
 
@@ -268,17 +296,15 @@ $(document).ready(function() {
 		$('#user-location:text').val('');
 	}
 
-	function getWeather(){
-		
-		$('#city-list').on('click', 'a',function(e){
-			e.preventDefault();
+	function getWeather(cityLocation){
 			var locationLat =' ';
 			var locationLon =' ';
 			var weatherTag = ' ';
-			var cityLocation = $(this).data('url');
+			//var cityLocation = $(this).data('url');
 			var element = $('.weather-results');
 			var key = '6d21846ad7649b70';
 			var weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+cityLocation+".json";
+			console.log(weather);
 			$.ajax({
 				  url : weather,
 				  dataType : "jsonp",
@@ -304,10 +330,17 @@ $(document).ready(function() {
 		$('ul#city-list').empty();	
 	    $('.weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
-		});
-	}
+	}	
+	
+	//Selects city from list on click event.
 
-	//open and closes user input window.
+	$('#city-list').on('click', 'a',function(e){
+		e.preventDefault();
+		var cityLocation = $(this).data('url');
+		getWeather(cityLocation);
+	});
+
+	//opens and closes user header.
 
 	$('.show-header').on('click',function(e){
 		e.preventDefault();
@@ -328,37 +361,44 @@ $(document).ready(function() {
 	});
 
 
-	// Starts searching on #user-search input.
 
 	$('#user-search').submit(function( event ){
 		event.preventDefault();
+		console.log(event);
 		console.log('Hola!');
 	});
+	
 
-	$('#user-location').on('keyup',function (){
+
+	// Starts searching on #user-search input.
+
+	$('#user-location').on('keypress',function (){
 		var keyEntered = $(this).val();
-		if (keyEntered == ''){
+		console.log(keyEntered);
+		if ( keyEntered == '') {
 			$('ul#city-list').empty();
 			$('#results').removeClass('show-results').addClass('hide-results');
 			//$('#user-search').get[0].reset()
-		}else{
+		} else {
 			getCities();
 		}
-	})
+		
+	});
 
-	getWeather();
+
+	//getWeather();
 
 	$('.close-results').on('click',function(e){
 		e.preventDefault();
 		 $('.weather-results').removeClass('show-results').addClass('hide-results');
 	});
 
-	// $('#user-location').blur(function(){
-	// 	$('#results').removeClass('show-results').addClass('hide-results');
-	// });
+	$('#user-location').blur(function(){
+		$('#results').removeClass('show-results').addClass('hide-results');
+	});
 
-	// $('#user-location:text').focusin(function(){
-	// 	$('#results').removeClass('hide-results').addClass('show-results');
-	// });
+	$('#user-location:text').focusin(function(){
+		$('#results').removeClass('hide-results').addClass('show-results');
+	});
 
 }); // End of doc ready. 	
