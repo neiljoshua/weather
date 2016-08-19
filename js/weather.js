@@ -186,48 +186,59 @@ $(document).ready(function() {
 
 	// var weatherTag = "Partly Cloudy";
 
-            function toggleResults() {
-            	var $listItems = $('li');
+	// $('input').keydown(function(event){
+	//     if(event.keyCode == 13) {
+	//       event.preventDefault();
+	//       return false;
+	//     }
+	// });
 
-				$('input').keydown(function(e)
-				{
-				    var key = e.keyCode,
-				        $selected = $listItems.filter('.selected'),
-				        $current;
+	function toggleResults() {
+    	var $listItems = $('li');
 
-				    if ( key != 40 && key != 38 ) return;
+		$('input').keydown(function(e)
+		{
+			
+		    var key = e.keyCode,
+		        $selected = $listItems.filter('.selected'),
+		        $current;
 
-				    $listItems.removeClass('selected');
+		    if ( key != 40 && key != 38 && key != 13 ) return;
 
-				    if ( key == 40 ) // Down key
-				    {
-				        if ( ! $selected.length || $selected.is(':last-child') ) {
-				            $current = $listItems.eq(0);
-				        }
-				        else {
-				            $current = $selected.next();
-				        }
-				    }
-				    else if ( key == 38 ) // Up key
-				    {
-				        if ( ! $selected.length || $selected.is(':first-child') ) {
-				            $current = $listItems.last();
-				        }
-				        else {
-				            $current = $selected.prev();
-				        }
-				    }
-				    // else if ( key == 13 )
-				    // {
-				    // 	e.preventDefault();
-				    // 	alert('pressed Enter Key');
-				    // 	// var cityLink = $selected.children('a').data('url');
-				    // 	// console.log('cityLink',cityLink);
-				    // }
+		    $listItems.removeClass('selected');
 
-				    $current.addClass('selected').focus();
-				});
-        }
+		    if ( key == 40 ) // Down key
+		    {
+		        if ( ! $selected.length || $selected.is(':last-child') ) {
+		            $current = $listItems.eq(0);
+		        }
+		        else {
+		            $current = $selected.next();
+		        }
+		        $current.addClass('selected');
+		    }
+		    else if ( key == 38 ) // Up key
+		    {
+		        if ( ! $selected.length || $selected.is(':first-child') ) {
+		            $current = $listItems.last();
+		        }
+		        else {
+		            $current = $selected.prev();
+		        }
+		        $current.addClass('selected');
+		    }
+		    else if ( key == 13 ) // Enter Key 
+		    {	
+		    	console.log('pressed Enter Key');
+		    	var cityLink = $selected.children('a').data('url');
+		    	console.log('cityLink',cityLink);
+		    	getWeather(cityLink);
+		    } 
+
+		    console.log(key);
+		    
+		});
+	}
 
 // console.log(Icons[weatherTag]);
 
@@ -252,13 +263,13 @@ $(document).ready(function() {
 	            $('#results').removeClass('hide-results').addClass('show-results');
 	        }
 	      
-	        toggleResults();
+	        toggleResults();   
 		    
 		    $("#city-list li").hover(function() {
 		   		$('#city-list li').removeClass('selected');
 		   		$(this).addClass('selected');
 		    });
-		});    
+		}); 
 	}		
 
 
@@ -338,6 +349,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var cityLocation = $(this).data('url');
 		getWeather(cityLocation);
+		console.log('cityLocation',cityLocation);
 	});
 
 	//opens and closes user header.
@@ -360,15 +372,9 @@ $(document).ready(function() {
 		$('#search-wrapper').removeClass('active').addClass('inactive');
 	});
 
-
-
-	$('#user-search').submit(function( event ){
+	$('#user-search').submit( function ( event ){
 		event.preventDefault();
-		console.log(event);
-		console.log('Hola!');
 	});
-	
-
 
 	// Starts searching on #user-search input.
 
@@ -385,8 +391,6 @@ $(document).ready(function() {
 		
 	});
 
-
-	//getWeather();
 
 	$('.close-results').on('click',function(e){
 		e.preventDefault();
