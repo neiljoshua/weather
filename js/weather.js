@@ -1,23 +1,6 @@
 $(document).ready(function() {
 
-	//dynamically give divs a random color.
-
-	// var bgcolorlist=new Array( "#A0157A", "#4105A0", "#03FCD8", "#B52AD1", "#1821F4", "#6B9010", "#D4C306", "#AB25DB", "#8BEF7A", "#2CB3A6", "#56BAF1", "#00CECB", "#E4115E", "#47E1EE", "#B32533", "#A928AC", "#24AD5B", "#6F2B5D", "#B15FCE", "#36A12F", "#F0EE8C", "#F6BD5B", "#072F69" );
-	// var usedIndex=new Array();
-
-	// $('.weather-block div').each(function(){
-	// var element = this;	
-	// var randomIndex = Math.floor(Math.random()*bgcolorlist.length);
-	// 	for(var i=0; i < bgcolorlist.length; i++){
-	// 		if ( bgcolorlist[randomIndex] != bgcolorlist[i] ) {
-	// 			//console.log("Hello");
-	// 			$(element).css("background-color", bgcolorlist[randomIndex]);
-	// 			usedIndex.push(bgcolorlist.splice(randomIndex,1));	
-	// 			console.log(usedIndex);
-	// 			break;
-	// 		}
-	// 	}
- //    });
+	var keyTriggered = 0;
 
 	//Calls weather for each div.
 	// $('.weather-block').each(function() {
@@ -184,21 +167,11 @@ $(document).ready(function() {
 		"Mostly Cloudy":"icon-clouds",
 	}
 
-	// var weatherTag = "Partly Cloudy";
-
-	// $('input').keydown(function(event){
-	//     if(event.keyCode == 13) {
-	//       event.preventDefault();
-	//       return false;
-	//     }
-	// });
-
 	function toggleResults() {
     	var $listItems = $('li');
 
-		$('input').keydown(function(e)
+		$('#user-location').keydown(function(e)
 		{
-			
 		    var key = e.keyCode,
 		        $selected = $listItems.filter('.selected'),
 		        $current;
@@ -229,14 +202,10 @@ $(document).ready(function() {
 		    }
 		    else if ( key == 13 ) // Enter Key 
 		    {	
-		    	console.log('pressed Enter Key');
 		    	var cityLink = $selected.children('a').data('url');
-		    	console.log('cityLink',cityLink);
 		    	getWeather(cityLink);
+		    	$('#user-location').blur();
 		    } 
-
-		    console.log(key);
-		    
 		});
 	}
 
@@ -272,75 +241,31 @@ $(document).ready(function() {
 		}); 
 	}		
 
-
-	function loadBackground(lLatitude, lLongitude, lTag, lTag2) {
-		$('.weather-results').css('background-image','none');
-		//console.log('tag', lTag);
-		var Key = '2212bc8253d6f3ed04b9e18ee5ddaa51';
-		var flickrApi = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+Key+"&lat="+lLatitude+"&lon="+lLongitude+"&tags="+lTag+"%2C"+lTag2+"%2C"+"landscape"+"%2C"+"street"+"&sort=relevance&page=1&in_gallery=true&format=json&jsoncallback=?";
-		var url = flickrApi + '&cb=?';
-		console.log(url);
-	    $.getJSON(url,function (jsonp){
-	    	$('#json-results').html(JSON.stringify(jsonp, null, 1));
-	    	var results = JSON.stringify(jsonp, null, 1);
-	    	results = JSON.parse(results);
-	    	console.log(results.photos.photo.length);
-	    	if ( results.photos.photo.length > 0 ){
-		    	var randomPhoto = results.photos.photo[Math.floor(Math.random() * results.photos.photo.length)];
-	    		console.log(randomPhoto);
-				var photoId = randomPhoto.id;
-				console.log(photoId);
-				var photoServer = randomPhoto.server;
-				var photoFarm = randomPhoto.farm;
-				var photoSecret = randomPhoto.secret;
-				var imgUrl = "https://farm" + photoFarm + ".staticflickr.com/" + photoServer + "/"+ photoId + "_" + photoSecret+"_h.jpg";
-				$('.weather-results').css('background-image','url('+imgUrl+')');
-				$('.weather-results').css('background-size','100% 100%');
-			}else{
-				$('.weather-results').css('background-color','#87767E');
-			}
-			$('#user-search').children('input').val('');	
-	    });
-	}
-
 	function updateInput(location) {
 		$('#user-location:text').val('');
 	}
 
 	function getWeather(cityLocation){
-			var locationLat =' ';
-			var locationLon =' ';
-			var weatherTag = ' ';
-			//var cityLocation = $(this).data('url');
 			var element = $('.weather-results');
 			var key = '6d21846ad7649b70';
 			var weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+cityLocation+".json";
-			console.log(weather);
 			$.ajax({
-				  url : weather,
-				  dataType : "jsonp",
-				  success : function(results) {
-				  locationLat = results.current_observation.display_location.latitude;
-				  locationLon = results.current_observation.display_location.longitude;
-				  weatherTag = results.current_observation.weather;
-				  wetherIcon = results.current_observation.icon;
-				  console.log('weather', weatherTag);
-				  var location = results.current_observation.display_location.full;
-				  var flickrLocation = location.split(',');
-				  flickrCity = flickrLocation[0];
-				  flickrCountry = flickrLocation[1];
-				  loadBackground(locationLat, locationLon, flickrCity, flickrCountry);
-				  updateInput(location);
-				  var temp = Math.round(results.current_observation.feelslike_f);
-				  element.find('.location-results').html(location);
-				  //element.find('#icon-results').attr('src', img);
-				  element.find('.temp-results').html(temp);
-				 
-			  	}
+				url : weather,
+				dataType : "jsonp",
+				success : function(results) {
+					  var temp = (results.current_observation.feelslike_f);
+					  var desc = (results.current_observation.weather);
+					  var location = (results.current_observation.display_location.full);
+					  console.log('weather', desc);
+					  element.find('.location-results').html(location);
+					  element.find('.icon').addClass(Icons[desc]);
+					  element.find('.temp-results').html(temp);
+				 } 
 		    });
 		$('ul#city-list').empty();	
 	    $('.weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
+	    updateInput(location);
 	}	
 	
 	//Selects city from list on click event.
@@ -349,7 +274,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		var cityLocation = $(this).data('url');
 		getWeather(cityLocation);
-		console.log('cityLocation',cityLocation);
 	});
 
 	//opens and closes user header.
@@ -357,13 +281,11 @@ $(document).ready(function() {
 	$('.show-header').on('click',function(e){
 		e.preventDefault();
 		$('#search-wrapper').removeClass('inactive').addClass('active');
-		$(this).removeClass('active').addClass('inactive');
 		$('.beta-msg').addClass('white-color');
 	});
 
 	$('.close-header').on('click', function(e){
 		e.preventDefault();	
-		$(this).removeClass('inactive').addClass('active');
 		$('.beta-msg').removeClass('white-color');
 		$('#user-search').find('input').val('');
 		$('ul#city-list').empty();
@@ -378,17 +300,20 @@ $(document).ready(function() {
 
 	// Starts searching on #user-search input.
 
-	$('#user-location').on('keypress',function (){
+	$('#user-location').on('keyup', function (){
+		keyTriggered++;
 		var keyEntered = $(this).val();
-		console.log(keyEntered);
-		if ( keyEntered == '') {
-			$('ul#city-list').empty();
-			$('#results').removeClass('show-results').addClass('hide-results');
-			//$('#user-search').get[0].reset()
-		} else {
-			getCities();
+			if ( keyEntered == '') {
+				$('ul#city-list').empty();
+				$('#results').removeClass('show-results').addClass('hide-results');
+				keyTriggered = 0;
+			}
+	})
+
+	$('#user-location').on('keypress',function (){
+		if (keyTriggered >=3 ){
+				getCities();
 		}
-		
 	});
 
 

@@ -7,7 +7,7 @@
 	}
 }
 
-@media (max-width: 767px){
+@media screen and (max-width: 767px){
 	.weather-block{
 		float:none;
 		width: 100%;

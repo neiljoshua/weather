@@ -169,6 +169,7 @@ input:focus:-ms-input-placeholder {
 	visibility: hidden;
 	opacity: 0;
 	border-radius: 10px;
+	background-color: #87767E;
 }
 
 .weather-results h1, .weather-results p {
@@ -276,6 +277,7 @@ input:focus:-ms-input-placeholder {
 	left: 0;
 	transition: 0.6s 0.4s ease-in-out;
 	z-index: 4;
+	background-color: #87767E;
 }
 
 
