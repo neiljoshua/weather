@@ -21,4 +21,12 @@
 		height: 75vh;
 		margin-bottom: 15vh;
 	}
+
+	.weather-results h1{
+		font-size: 20px;
+	}
+
+	.icon {
+		margin-top: 55px;
+	}
 }

@@ -1,12 +1,12 @@
 @keyframes moveweatherblocks {
 	0%{
-		transform: scale(0.4);
+		transform: scale(1.0);
 	}
 	25%{
 		transform: scale(0.8);
 	}
 	50%{
-		transform: scale(0.6);
+		transform: scale(0.7);
 	}
 	75%{
 		transform: scale(0.9);
@@ -160,6 +160,11 @@ input:focus:-ms-input-placeholder {
 	padding-top: 70px;
 }
 
+#pre-loader{
+	height: 100%;
+	width: auto;
+}
+
 .weather-results {
 	position: absolute;
 	top: 70px;
@@ -202,7 +207,7 @@ input:focus:-ms-input-placeholder {
 	height: 300px;
 	margin-bottom: 10px;
 	border-radius: 10px;
-	animation: moveweatherblocks 1.5s ease-in-out forwards;
+	animation: moveweatherblocks 1s ease forwards;
 }
 
 .icon {

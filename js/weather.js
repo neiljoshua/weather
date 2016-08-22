@@ -2,7 +2,17 @@ $(document).ready(function() {
 
 	var keyTriggered = 0;
 
+	var $loading = $('#pre-loader').hide();
+	// $(document)
+ //  		.ajaxStart(function () {
+ //    		$loading.show();
+ //  		})
+ //  			.ajaxStop(function () {
+ //    	$loading.hide();
+ //  	});
+
 	//Calls weather for each div.
+	
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
 	//     var state = $(this).data('state');
@@ -16,10 +26,8 @@ $(document).ready(function() {
 	//     	    success : function(results) {
 	// 				var location = results.current_observation.display_location.full;
 	// 				var temp = results.current_observation.feelslike_f;
-	// 				//var img = results.current_observation.icon_url;
 	// 				var desc = results.current_observation.weather;
 	// 				var icon =results.current_observation.icon;
-	// 				console.log(icon);
 	// 				element.find('.location').html(location);
 	// 				element.find('.temp').html(temp);
 	// 				element.find('.desc').html(desc);
@@ -246,6 +254,7 @@ $(document).ready(function() {
 	}
 
 	function getWeather(cityLocation){
+			$loading.show();
 			var element = $('.weather-results');
 			var key = '6d21846ad7649b70';
 			var weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+cityLocation+".json";
@@ -262,6 +271,7 @@ $(document).ready(function() {
 					  element.find('.temp-results').html(temp);
 				 } 
 		    });
+		$loading.hide();    
 		$('ul#city-list').empty();	
 	    $('.weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
@@ -281,6 +291,7 @@ $(document).ready(function() {
 	$('.show-header').on('click',function(e){
 		e.preventDefault();
 		$('#search-wrapper').removeClass('inactive').addClass('active');
+		$(this).removeClass('active').addClass('inactive');
 		$('.beta-msg').addClass('white-color');
 	});
 
@@ -311,7 +322,7 @@ $(document).ready(function() {
 	})
 
 	$('#user-location').on('keypress',function (){
-		if (keyTriggered >=3 ){
+		if (keyTriggered >=4 ){
 				getCities();
 		}
 	});
