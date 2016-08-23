@@ -12,7 +12,7 @@ $(document).ready(function() {
  //  	});
 
 	//Calls weather for each div.
-	
+
 	// $('.weather-block').each(function() {
 	// 	var element = $(this);
 	//     var state = $(this).data('state');
@@ -255,6 +255,8 @@ $(document).ready(function() {
 
 	function getWeather(cityLocation){
 			$loading.show();
+			$('.weather-results').removeClass('show-results').addClass('hide-results');
+			$('.weather-block').removeClass('active').addClass('inactive');
 			var element = $('.weather-results');
 			var key = '6d21846ad7649b70';
 			var weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+cityLocation+".json";
@@ -269,13 +271,14 @@ $(document).ready(function() {
 					  element.find('.location-results').html(location);
 					  element.find('.icon').addClass(Icons[desc]);
 					  element.find('.temp-results').html(temp);
+					  $loading.hide();
 				 } 
 		    });
-		$loading.hide();    
+		    
+	    updateInput(location);
 		$('ul#city-list').empty();	
 	    $('.weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
-	    updateInput(location);
 	}	
 	
 	//Selects city from list on click event.
@@ -322,7 +325,7 @@ $(document).ready(function() {
 	})
 
 	$('#user-location').on('keypress',function (){
-		if (keyTriggered >=4 ){
+		if (keyTriggered >=3 ){
 				getCities();
 		}
 	});
@@ -331,6 +334,7 @@ $(document).ready(function() {
 	$('.close-results').on('click',function(e){
 		e.preventDefault();
 		 $('.weather-results').removeClass('show-results').addClass('hide-results');
+		 $('.weather-block').removeClass('inactive').addClass('active');
 	});
 
 	$('#user-location').blur(function(){

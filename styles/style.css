@@ -161,8 +161,12 @@ input:focus:-ms-input-placeholder {
 }
 
 #pre-loader{
-	height: 100%;
-	width: auto;
+	display: block;
+    position: absolute;
+    margin: auto;
+    bottom: 38%;
+    right: 0;
+    left: 0;
 }
 
 .weather-results {
@@ -290,4 +294,14 @@ input:focus:-ms-input-placeholder {
 	visibility: hidden;
 	opacity: 0;
 	transition:  0.4s 0.2s ease-in-out;
+}
+
+.weather-block.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.weather-block.inactive {
+	visibility: hidden;
+	opacity: 0;
 }
