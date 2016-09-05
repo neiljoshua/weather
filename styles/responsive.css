@@ -7,7 +7,7 @@
 	}
 }
 
-@media (max-width: 767px){
+@media screen and (max-width: 767px){
 	.weather-block{
 		float:none;
 		width: 100%;
@@ -20,5 +20,13 @@
 	.weather-results {
 		height: 75vh;
 		margin-bottom: 15vh;
+	}
+
+	.weather-results h1{
+		font-size: 20px;
+	}
+
+	.icon {
+		margin-top: 55px;
 	}
 }

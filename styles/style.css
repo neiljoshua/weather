@@ -1,12 +1,12 @@
 @keyframes moveweatherblocks {
 	0%{
-		transform: scale(0.4);
+		transform: scale(1.0);
 	}
 	25%{
 		transform: scale(0.8);
 	}
 	50%{
-		transform: scale(0.6);
+		transform: scale(0.7);
 	}
 	75%{
 		transform: scale(0.9);
@@ -160,6 +160,15 @@ input:focus:-ms-input-placeholder {
 	padding-top: 70px;
 }
 
+#pre-loader{
+	display: block;
+    position: absolute;
+    margin: auto;
+    bottom: 38%;
+    right: 0;
+    left: 0;
+}
+
 .weather-results {
 	position: absolute;
 	top: 70px;
@@ -169,6 +178,7 @@ input:focus:-ms-input-placeholder {
 	visibility: hidden;
 	opacity: 0;
 	border-radius: 10px;
+	background-color: #87767E;
 }
 
 .weather-results h1, .weather-results p {
@@ -201,7 +211,7 @@ input:focus:-ms-input-placeholder {
 	height: 300px;
 	margin-bottom: 10px;
 	border-radius: 10px;
-	animation: moveweatherblocks 1.5s ease-in-out forwards;
+	animation: moveweatherblocks 1s ease forwards;
 }
 
 .icon {
@@ -276,6 +286,7 @@ input:focus:-ms-input-placeholder {
 	left: 0;
 	transition: 0.6s 0.4s ease-in-out;
 	z-index: 4;
+	background-color: #87767E;
 }
 
 
@@ -283,4 +294,14 @@ input:focus:-ms-input-placeholder {
 	visibility: hidden;
 	opacity: 0;
 	transition:  0.4s 0.2s ease-in-out;
+}
+
+.weather-block.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.weather-block.inactive {
+	visibility: hidden;
+	opacity: 0;
 }
