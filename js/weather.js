@@ -3,38 +3,38 @@ $(document).ready(function() {
 	var keyTriggered = 0;
 
 	var $loading = $('#pre-loader').hide();
-	// $(document)
- //  		.ajaxStart(function () {
- //    		$loading.show();
- //  		})
- //  			.ajaxStop(function () {
- //    	$loading.hide();
- //  	});
+	$(document)
+  		.ajaxStart(function () {
+    		$loading.show();
+  		})
+  			.ajaxStop(function () {
+    	$loading.hide();
+  	});
 
-	//Calls weather for each div.
+	// Calls weather for each div.
 
-	// $('.weather-block').each(function() {
-	// 	var element = $(this);
-	//     var state = $(this).data('state');
-	//     var city = $(this).data('city');	
- // 	       var key = '6d21846ad7649b70';
-	//        var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
-	//     //console.log(Weather); 
- // 	      $.ajax({
-	// 	    url : Weather,
-	//      	dataType : "jsonp",
-	//     	    success : function(results) {
-	// 				var location = results.current_observation.display_location.full;
-	// 				var temp = results.current_observation.feelslike_f;
-	// 				var desc = results.current_observation.weather;
-	// 				var icon =results.current_observation.icon;
-	// 				element.find('.location').html(location);
-	// 				element.find('.temp').html(temp);
-	// 				element.find('.desc').html(desc);
-	// 				element.find('.icon').addClass(Icons[desc]);
-	// 		    }				
-	// 	   });	    
-	// })
+	$('.weather-block').each(function() {
+		var element = $(this);
+	    var state = $(this).data('state');
+	    var city = $(this).data('city');	
+ 	       var key = '6d21846ad7649b70';
+	       var Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json"
+	    console.log(Weather); 
+ 	      $.ajax({
+		    url : Weather,
+	     	dataType : "jsonp",
+	    	    success : function(results) {
+					var location = results.current_observation.display_location.full;
+					var temp = results.current_observation.feelslike_f;
+					var desc = results.current_observation.weather;
+					var icon =results.current_observation.icon;
+					element.find('.location').html(location);
+					element.find('.temp').html(temp);
+					element.find('.desc').html(desc);
+					element.find('.icon').addClass(Icons[desc]);
+			    }				
+		   });	    
+	})
 
 	var Icons = {
 		"Drizzle":"icon-rain",
@@ -279,6 +279,8 @@ $(document).ready(function() {
 		$('ul#city-list').empty();	
 	    $('.weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
+	    $('form').reset();
+
 	}	
 	
 	//Selects city from list on click event.
