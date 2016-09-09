@@ -399,8 +399,6 @@ $(document).ready(function() {
 		$('ul#city-list').empty();	
 	    $('.weather-results').removeClass('hide-results').addClass('show-results');
 	    $('#results').removeClass('show-results').addClass('hide-results');
-	    $('form').reset();
-
 	}	
 	
 	//Selects city from list on click event.
