@@ -307,4 +307,5 @@ input:focus:-ms-input-placeholder {
 .weather-block.inactive {
 	visibility: hidden;
 	opacity: 0;
+	height: 0;
 }
