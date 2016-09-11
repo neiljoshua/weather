@@ -21,6 +21,10 @@
  	padding: 0;
 }
 
+html, body, .wrapper {
+	height: 100%;
+}
+
 body { 
 	   background-color: #E5E6E4;	
 	   color: #fff; 
@@ -156,7 +160,6 @@ input:focus:-ms-input-placeholder {
 	position: relative;
 	width: 80%;
 	margin: 0 auto;
-	position: relative;
 	padding-top: 70px;
 }
 
@@ -164,9 +167,9 @@ input:focus:-ms-input-placeholder {
 	display: block;
     position: absolute;
     margin: auto;
-    bottom: 38%;
-    right: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 .weather-results {
