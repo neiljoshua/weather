@@ -17,16 +17,21 @@
 
 @media screen and (max-width: 640px) { 
 
-	.weather-results {
-		height: 75vh;
-		margin-bottom: 15vh;
+	.inner {
+		height: calc(100% - 190px);
 	}
 
-	.weather-results h1{
-		font-size: 20px;
+
+	.weather-results h1 {
+		font-size: 14px;
 	}
 
-	.icon {
-		/*margin-top: 55px;*/
+	.weather-results p {
+		font-size: 36px;
 	}
+
+	.weather-blocks {
+		display: none;
+	}
+
 }
