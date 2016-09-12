@@ -29,7 +29,7 @@ $(document).ready(function() {
 					var desc = results.current_observation.weather;
 					var icon =results.current_observation.icon;
 					element.find('.location').html(location);
-					element.find('.temp').html(temp);
+					element.find('.temp').html(Math.round(temp));
 					element.find('.desc').html(desc);
 					element.find('.icon').addClass(Icons[desc]);
 			    }				
@@ -270,7 +270,7 @@ $(document).ready(function() {
 					  console.log('weather', desc);
 					  element.find('.location-results').html(location);
 					  element.find('.icon').addClass(Icons[desc]);
-					  element.find('.temp-results').html(temp);
+					  element.find('.temp-results').html(Math.round(temp));
 					  $loading.hide();
 				 } 
 		    });
