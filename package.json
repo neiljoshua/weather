@@ -1,0 +1,26 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "Web developer",
+  "main": "index.js",
+  "scripts": {
+    "test": "/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weather/nm.git"
+  },
+  "keywords": [
+    "/"
+  ],
+  "author": "@weather",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weather/nm/issues"
+  },
+  "homepage": "https://github.com/weather/nm#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0"
+  }
+}
