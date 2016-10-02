@@ -2,24 +2,33 @@ module.exports = function(grunt) {
   
 // Project configuration.
 grunt.initConfig({
- // Tasks
+  // Tasks
+	concat: {
+    dist: {
+      src: ['src/css/style.css', 
+      		'src/css/responsive.css', 'src/css/fontello.css',
+      		'src/css/owl.carousel.css', 'src/css/owl.theme.css'],
+      dest: 'styles.css',
+    },
+  },
+
 	uglify: {
-	  files: { 
-        src: 'src/js/*.js',  // source files mask
-        dest: '',    // destination folder
-        expand: true,    // allow dynamic building
-        flatten: true,   // remove all unnecessary nesting
-        ext: '.min.js'   // replace .js to .min.js
-	  }
+	  my_target: {
+      files: {
+        'weather.min.js': ['src/js/weather.js'],
+        'vendor.min.js': ['src/js/vendor/*.min.js']
+      }
+    }
 	}
 
 });
 
 // Load the plugin that provides the "uglify" task.
 grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-contrib-concat');
 
 // Default task(s).
-grunt.registerTask('default', ['uglify']);
+grunt.registerTask('default', ['concat', 'uglify']);
 
 }
  
