@@ -176,7 +176,6 @@ input:focus:-ms-input-placeholder {
 .weather-results {
 	position: absolute;
 	top: 70px;
-	bottom: 0;
 	right: 0;
 	left:0;
 	visibility: hidden;
@@ -191,21 +190,18 @@ input:focus:-ms-input-placeholder {
 	margin-top: 10%;
 	margin-bottom: 5%;
 	font-size: 50px;
+	clear: both;
 }
 
 .close-results {
-	position: absolute;
-	right :25px;
-	bottom: 25px;
+	float: right;
 	font-size: 35px;
 	color: #fff;
 }
 
 .more-info {
-	position: absolute;
-	left :25px;
-	bottom: 25px;
-	font-size: 60px;
+	float: left;
+	font-size: 45px;
 	color: #fff;
 }
 

@@ -4,11 +4,9 @@
 		<title>Weather Web App</title>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<link href='https://fonts.googleapis.com/css?family=Raleway:100,300,500,600,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="styles/fontello.css">
-		<link rel="stylesheet" type="text/css" href="styles/style.css">
-		<link rel="stylesheet" type="text/css" href="styles/responsive.css">
-		<script src="js/jquery-1.9.1.min.js"></script> 
-		<script src="js/weather.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="vendor.min.js"></script> 
+		<script src="weather.min.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -28,16 +26,15 @@
 			</header>
 
 			<div class="inner">
-				<img id="pre-loader" src="images/gif-load.gif">
+				<img id="pre-loader" src="src/images/gif-load.gif">
 				<!--Window that shows user search results -->
 				<div class="weather-results" >
-					
-				
+					<a href="#" class="close-results"> <i class="icon-up-open"></i></a>
 					<h1> Current Weather at <span class="location-results"> </span></h1>
 					<p>Feels like <span class="temp-results"> </span>&deg;</p>
 					<div class="icon"></div>
 					<a href="#" class="more-info"> <i class="icon-temperature"></i></a>
-					<a href="#" class="close-results"> <i class="icon-up-open"></i></a>
+					<div class="clear"></div>
 				</div>
 				<!--End of window search result -->
 				<div class="weather-blocks">
