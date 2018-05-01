@@ -3,68 +3,42 @@
 		<meta charset="utf-8">
 		<title>Weather Web App</title>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-		<link href='https://fonts.googleapis.com/css?family=Raleway:100,300,500,600,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="styles.css">
-		<script src="vendor.min.js"></script> 
+		<link rel="stylesheet" type="text/css" href="src/css/styles.css">
+		<link rel="shortcut icon" href="src/images/favicon.ico" type="image/x-icon" />
+		<script src="vendor.min.js"></script>
 		<script src="weather.min.js"></script>
 	</head>
 	<body>
 		<div class="wrapper">
-		<div class="beta-msg">Weather Beta</div>
 			<header>
-				<div id="search-wrapper">
-					<form id="user-search" action="search" >
-						<input id="user-location" type="text" autocomplete = "off" name="city_name" placeholder="City, State">
-						<div id="results">
-							<ul id="city-list">
-							</ul>
-						</div>
-					</form>
-					<a href="#" class="close-header"><i class="demo-icon icon-up-open"></i></a>
-				</div>
-				<a href="#" class="show-header"> Locations <i class="demo-icon  icon-down-open"></i></a>
+				<h1 class="logo">Weather</h1>
+				<a href="#" class="find"><i class="icon-search"></i></a>
 			</header>
-
-			<div class="inner">
-				<img id="pre-loader" src="src/images/gif-load.gif">
-				<!--Window that shows user search results -->
-				<div class="weather-results" >
-					<a href="#" class="close-results"> <i class="icon-up-open"></i></a>
-					<h1> Current Weather in <span class="location-results"> </span></h1>
-					<p>Feels like <span class="temp-results"> </span>&deg;</p>
+			<div class="search">
+				<a href="#" class="cancel"><i class="icon-cancel"></i></a>
+				<form class="search__form" action="search" >
+					<input class="search__input" type="text" autocomplete = "off" name="city_name" placeholder="City, State">
+					<ul class="search__results">
+					</ul>
+				</form>
+			</div>
+			<div class="weather">
+				<div class="local-weather" data-city='New York' data-state="NY">
+					<h2 class="location"></h2>
 					<div class="icon"></div>
-					<a href="#" class="more-info"> <i class="icon-temperature"></i></a>
-					<div class="clear"></div>
-				</div>
-				<!--End of window search result -->
-				<div class="weather-blocks">
+					<p><span class="temp"> </span>&deg; F And <span class="desc"> </span> </p>
+		 		</div>
+		 		<div class="info-weather">
+		 			<p> Feels : <span class="feels"> </span><span>&deg;</span></p>
+		 			<p> Wind : <span class="wind"> </span> MPH.</p>
+		 			<p> Humidity : <span class="humidity"> </span></p>
+		 			<p> Dew Point : <span class="dew-point"></span> <span>&deg;</span></p>
+		 			<p> Pressure :  <span class="pressure">  </span></p>
+		 		</div>
+	 		</div>
 
-					<div class="weather-block" data-city='New York' data-state="NY">
-							<h2>Weather in <span class="location"> </span></h2>
-							<div class="icon"></div>
-							<p><span class="temp"> </span>&deg; F And <span class="desc"> </span> </p>
-			 		</div>
-			
- 					<div class="weather-block" data-city="los_angeles" data-state="CA">
-							<h2>Weather in <span class="location"> </span></h2>
-							<div class="icon"></div>
-							<p><span class="temp"> </span>&deg; F And <span class="desc"></span></p>
-					</div>
-					<div class="weather-block" data-city="chicago" data-state="IL">
-							<h2>Weather in <span class="location"></span></h2>
-							<div class="icon"></div>
-							<p><span class="temp"> </span>&deg; F And <span class="desc"> </span></p>
-					</div>	
-					<div class="weather-block" data-city="miami" data-state="FL">
-							<h2>Weather in <span class="location"> </span></h2>
-							<div class="icon"></div>
-							<p><span class="temp"> </span>&deg; F And <span class="desc"></span></p>
-					</div> 
-				</div>
-				<div class="clear"> </div>
-			</div>	
 		</div>
-		
+
 		 <script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

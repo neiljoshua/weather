@@ -1,0 +1,1099 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/
+	 v2.0 | 20110126
+	 License: none (public domain)
+*/
+/* line 6, ../sass/globals/reset.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 27, ../sass/globals/reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 31, ../sass/globals/reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 34, ../sass/globals/reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 37, ../sass/globals/reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 41, ../sass/globals/reset.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 45, ../sass/globals/reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 50, ../sass/globals/reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 55, ../sass/globals/reset.scss */
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="email"],
+input[type="text"],
+button {
+  border: 0;
+  background: none;
+  outline: 0;
+}
+
+/* line 66, ../sass/globals/reset.scss */
+input[type="button"],
+input[type="submit"],
+button {
+  padding: 0;
+  cursor: pointer;
+}
+
+@-webkit-keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-moz-keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-ms-keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-o-keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-ms-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* Roboto_Slab Thin */
+@font-face {
+  font-family: 'RobotoSlab-Thin';
+  font-style: thin;
+  font-weight: 100;
+  src: url("/src/font/RobotoSlab/RobotoSlab-Thin.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'RobotoSlab-Light';
+  font-style: normal;
+  font-weight: 300;
+  src: url("/src/font/RobotoSlab/RobotoSlab-Light.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'RobotoSlab-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/src/font/RobotoSlab/RobotoSlab-Regular.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+/* Roboto_Slab Bold */
+@font-face {
+  font-family: 'RobotoSlab-Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url("/src/font/RobotoSlab/RobotoSlab-Bold.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+/* Raleway Light */
+@font-face {
+  font-family: 'Raleway-Light';
+  font-style: normal;
+  font-weight: 300;
+  src: url("/src/font/Raleway/Raleway-Light.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+/* Raleway Regular */
+@font-face {
+  font-family: 'Raleway-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/src/font/Raleway/Raleway-Regular.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+/* Raleway  Bold */
+@font-face {
+  font-family: 'Raleway-Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url("/src/font/Raleway/Raleway-Bold.ttf") format("truetype");
+  /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'fontello';
+  src: url("/src/font/fontello.eot?84191276");
+  src: url("/src/font/fontello.eot?84191276#iefix") format("embedded-opentype"), url("/src/font/fontello.woff2?84191276") format("woff2"), url("/src/font/fontello.woff?84191276") format("woff"), url("/src/font/fontello.ttf?84191276") format("truetype"), url("/src/font/fontello.svg?84191276#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?84191276#fontello') format('svg');
+  }
+}
+*/
+/* line 23, ../sass/vendors/fontello.scss */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-weight: 100;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+/* line 59, ../sass/vendors/fontello.scss */
+.icon-mail-1:before {
+  content: '\e800';
+}
+
+/* '' */
+/* line 60, ../sass/vendors/fontello.scss */
+.icon-heart-empty:before {
+  content: '\e801';
+}
+
+/* '' */
+/* line 61, ../sass/vendors/fontello.scss */
+.icon-rocket:before {
+  content: '\e802';
+}
+
+/* '' */
+/* line 62, ../sass/vendors/fontello.scss */
+.icon-behance:before {
+  content: '\e803';
+}
+
+/* '' */
+/* line 63, ../sass/vendors/fontello.scss */
+.icon-users:before {
+  content: '\e804';
+}
+
+/* '' */
+/* line 64, ../sass/vendors/fontello.scss */
+.icon-eye:before {
+  content: '\e805';
+}
+
+/* '' */
+/* line 65, ../sass/vendors/fontello.scss */
+.icon-pencil:before {
+  content: '\e806';
+}
+
+/* '' */
+/* line 66, ../sass/vendors/fontello.scss */
+.icon-feather:before {
+  content: '\e807';
+}
+
+/* '' */
+/* line 67, ../sass/vendors/fontello.scss */
+.icon-clock:before {
+  content: '\e808';
+}
+
+/* '' */
+/* line 68, ../sass/vendors/fontello.scss */
+.icon-trophy:before {
+  content: '\e809';
+}
+
+/* '' */
+/* line 69, ../sass/vendors/fontello.scss */
+.icon-megaphone:before {
+  content: '\e80a';
+}
+
+/* '' */
+/* line 70, ../sass/vendors/fontello.scss */
+.icon-twitter:before {
+  content: '\e80b';
+}
+
+/* '' */
+/* line 71, ../sass/vendors/fontello.scss */
+.icon-facebook:before {
+  content: '\e80c';
+}
+
+/* '' */
+/* line 72, ../sass/vendors/fontello.scss */
+.icon-gplus:before {
+  content: '\e80d';
+}
+
+/* '' */
+/* line 73, ../sass/vendors/fontello.scss */
+.icon-dribbble:before {
+  content: '\e80e';
+}
+
+/* '' */
+/* line 74, ../sass/vendors/fontello.scss */
+.icon-right:before {
+  content: '\e80f';
+}
+
+/* '' */
+/* line 75, ../sass/vendors/fontello.scss */
+.icon-forrst:before {
+  content: '\e810';
+}
+
+/* '' */
+/* line 76, ../sass/vendors/fontello.scss */
+.icon-mail:before {
+  content: '\e811';
+}
+
+/* '' */
+/* line 77, ../sass/vendors/fontello.scss */
+.icon-align-center:before {
+  content: '\e812';
+}
+
+/* '' */
+/* line 78, ../sass/vendors/fontello.scss */
+.icon-menu:before {
+  content: '\e813';
+}
+
+/* '' */
+/* line 79, ../sass/vendors/fontello.scss */
+.icon-temperature:before {
+  content: '\e814';
+}
+
+/* '' */
+/* line 80, ../sass/vendors/fontello.scss */
+.icon-clouds-flash-alt:before {
+  content: '\e815';
+}
+
+/* '' */
+/* line 81, ../sass/vendors/fontello.scss */
+.icon-cloud:before {
+  content: '\e816';
+}
+
+/* '' */
+/* line 82, ../sass/vendors/fontello.scss */
+.icon-sun:before {
+  content: '\e817';
+}
+
+/* '' */
+/* line 83, ../sass/vendors/fontello.scss */
+.icon-cloud-sun:before {
+  content: '\e818';
+}
+
+/* '' */
+/* line 84, ../sass/vendors/fontello.scss */
+.icon-cloud-flash:before {
+  content: '\e819';
+}
+
+/* '' */
+/* line 85, ../sass/vendors/fontello.scss */
+.icon-drizzle:before {
+  content: '\e81a';
+}
+
+/* '' */
+/* line 86, ../sass/vendors/fontello.scss */
+.icon-rain:before {
+  content: '\e81b';
+}
+
+/* '' */
+/* line 87, ../sass/vendors/fontello.scss */
+.icon-snow:before {
+  content: '\e81c';
+}
+
+/* '' */
+/* line 88, ../sass/vendors/fontello.scss */
+.icon-snow-alt:before {
+  content: '\e81d';
+}
+
+/* '' */
+/* line 89, ../sass/vendors/fontello.scss */
+.icon-snow-heavy:before {
+  content: '\e81e';
+}
+
+/* '' */
+/* line 90, ../sass/vendors/fontello.scss */
+.icon-hail:before {
+  content: '\e81f';
+}
+
+/* '' */
+/* line 91, ../sass/vendors/fontello.scss */
+.icon-clouds:before {
+  content: '\e820';
+}
+
+/* '' */
+/* line 92, ../sass/vendors/fontello.scss */
+.icon-help-circled-alt:before {
+  content: '\e821';
+}
+
+/* '' */
+/* line 93, ../sass/vendors/fontello.scss */
+.icon-down-open:before {
+  content: '\e822';
+}
+
+/* '' */
+/* line 94, ../sass/vendors/fontello.scss */
+.icon-up-open:before {
+  content: '\e823';
+}
+
+/* '' */
+/* line 95, ../sass/vendors/fontello.scss */
+.icon-right-open:before {
+  content: '\e824';
+}
+
+/* '' */
+/* line 96, ../sass/vendors/fontello.scss */
+.icon-left-open:before {
+  content: '\e825';
+}
+
+/* '' */
+/* line 97, ../sass/vendors/fontello.scss */
+.icon-down-circle:before {
+  content: '\e826';
+}
+
+/* '' */
+/* line 98, ../sass/vendors/fontello.scss */
+.icon-left-circle:before {
+  content: '\e827';
+}
+
+/* '' */
+/* line 99, ../sass/vendors/fontello.scss */
+.icon-right-circle:before {
+  content: '\e828';
+}
+
+/* '' */
+/* line 100, ../sass/vendors/fontello.scss */
+.icon-up-circle:before {
+  content: '\e829';
+}
+
+/* '' */
+/* line 101, ../sass/vendors/fontello.scss */
+.icon-search:before {
+  content: '\e82a';
+}
+
+/* '' */
+/* line 102, ../sass/vendors/fontello.scss */
+.icon-cancel:before {
+  content: '\e82b';
+}
+
+/* '' */
+/* line 1, ../sass/hamburger.scss */
+.hamburger--rot span::before, .hamburger--rot span::after {
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0.3s, 0s;
+}
+
+/* line 6, ../sass/hamburger.scss */
+.hamburger--rot.is-active span::before, .hamburger--rot.is-active span::after {
+  transition-delay: 0s, 0.3s;
+}
+
+/* line 10, ../sass/hamburger.scss */
+.hamburger {
+  position: fixed;
+  display: none;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  margin: 30px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  text-indent: -9999px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2000;
+}
+/* line 29, ../sass/hamburger.scss */
+.hamburger:focus {
+  outline: none;
+}
+/* line 32, ../sass/hamburger.scss */
+.hamburger span {
+  display: block;
+  position: absolute;
+  top: 18px;
+  left: 7px;
+  right: 7px;
+  height: 3px;
+  border-radius: 20px;
+  background: #fff;
+}
+/* line 41, ../sass/hamburger.scss */
+.hamburger span::before, .hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 20px;
+  background-color: #fff;
+  content: "";
+}
+/* line 51, ../sass/hamburger.scss */
+.hamburger span::before {
+  top: -8px;
+}
+/* line 54, ../sass/hamburger.scss */
+.hamburger span::after {
+  bottom: -8px;
+}
+
+/* line 62, ../sass/hamburger.scss */
+.hamburger--rot span {
+  transition: background 0s;
+}
+/* line 64, ../sass/hamburger.scss */
+.hamburger--rot span::before {
+  transition-property: top, transform;
+}
+/* line 68, ../sass/hamburger.scss */
+.hamburger--rot span::after {
+  transition-property: bottom, transform;
+}
+
+/* active state, i.e. menu open */
+/* line 77, ../sass/hamburger.scss */
+.hamburger--rot.is-active span {
+  background: none;
+}
+/* line 79, ../sass/hamburger.scss */
+.hamburger--rot.is-active span::before {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/* line 85, ../sass/hamburger.scss */
+.hamburger--rot.is-active span::after {
+  bottom: 0;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* line 1, ../sass/form.scss */
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+/* line 5, ../sass/form.scss */
+input:focus:-moz-placeholder {
+  color: transparent;
+}
+
+/* line 9, ../sass/form.scss */
+input:focus::-moz-placeholder {
+  color: transparent;
+}
+
+/* line 13, ../sass/form.scss */
+input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+/* line 10, ../sass/styles.scss */
+header {
+  display: inline-block;
+  width: -webkit-calc(100% - 40px);
+  width: -moz-calc(100% - 40px);
+  width: calc(100% - 40px);
+  padding: 20px 20px 0 20px;
+  font-size: 0;
+  vertical-align: middle;
+  -webkit-transition: opacity 0.6s ease-in;
+  -ms-transition: opacity 0.6s ease-in;
+  -o-transition: opacity 0.6s ease-in;
+  transition: opacity 0.6s ease-in;
+}
+@media (min-width: 769px) {
+  /* line 10, ../sass/styles.scss */
+  header {
+    width: -webkit-calc(100% - 60px);
+    width: -moz-calc(100% - 60px);
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+  }
+}
+/* line 21, ../sass/styles.scss */
+header.hidden {
+  opacity: 0;
+  -webkit-transition: opacity 0.6s ease-in 0.1s;
+  -ms-transition: opacity 0.6s ease-in 0.1s;
+  -o-transition: opacity 0.6s ease-in 0.1s;
+  transition: opacity 0.6s ease-in 0.1s;
+}
+
+/* line 26, ../sass/styles.scss */
+html,
+.wrapper,
+body {
+  color: #fff;
+  font-family: 'RobotoSlab-Thin';
+}
+
+/* line 33, ../sass/styles.scss */
+.wrapper {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  min-height: 100vh;
+  font-family: 'RobotoSlab-Thin';
+  background: url("/src/images/weather.jpg") center center no-repeat;
+  -webkit-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-size: 100% 100%;
+  padding-bottom: 60px;
+}
+@media (min-width: 601px) {
+  /* line 33, ../sass/styles.scss */
+  .wrapper {
+    margin: 0  auto;
+    padding-bottom: 0;
+  }
+}
+
+/* line 49, ../sass/styles.scss */
+.logo {
+  display: inline-block;
+  width: 90%;
+  font-family: 'RobotoSlab-Thin';
+  font-size: 35px;
+  height: 100%;
+  font-size: 600;
+}
+@media (min-width: 601px) {
+  /* line 49, ../sass/styles.scss */
+  .logo {
+    font-size: 50px;
+  }
+}
+
+/* line 61, ../sass/styles.scss */
+.find {
+  display: inline-block;
+  width: 10%;
+  text-align: right;
+  font-size: 35px;
+}
+/* line 66, ../sass/styles.scss */
+.find .icon-search {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+@media (min-width: 601px) {
+  /* line 61, ../sass/styles.scss */
+  .find {
+    font-size: 55px;
+  }
+}
+
+/* line 78, ../sass/styles.scss */
+.cancel {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+/* line 82, ../sass/styles.scss */
+.cancel .icon-cancel {
+  display: block;
+  font-size: 45px;
+  color: #fff;
+}
+@media (min-width: 601px) {
+  /* line 78, ../sass/styles.scss */
+  .cancel {
+    right: 20px;
+  }
+}
+
+/* line 92, ../sass/styles.scss */
+.search {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  width: -webkit-calc(100% - 40px);
+  width: -moz-calc(100% - 40px);
+  width: calc(100% - 40px);
+  padding: 20px;
+  background-color: rgba(163, 186, 195, 0.7);
+  visibility: hidden;
+  -webkit-transition: all 0.7s ease-in 0.1s;
+  -ms-transition: all 0.7s ease-in 0.1s;
+  -o-transition: all 0.7s ease-in 0.1s;
+  transition: all 0.7s ease-in 0.1s;
+  z-index: 200;
+}
+/* line 105, ../sass/styles.scss */
+.search__form {
+  display: block;
+  width: 270px;
+  margin: 0 auto;
+  border-bottom: 1px solid #fff;
+}
+@media (min-width: 601px) {
+  /* line 105, ../sass/styles.scss */
+  .search__form {
+    width: 320px;
+  }
+}
+/* line 114, ../sass/styles.scss */
+.search__input {
+  display: block;
+  width: 270px;
+  margin: 0 auto;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  font-family: 'RobotoSlab-Thin';
+}
+/* line 123, ../sass/styles.scss */
+.search__input::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+@media (min-width: 601px) {
+  /* line 114, ../sass/styles.scss */
+  .search__input {
+    width: 320px;
+  }
+}
+/* line 131, ../sass/styles.scss */
+.search__results {
+  display: block;
+  width: 270px;
+  margin: 0 auto;
+  text-align: center;
+  overflow-y: scroll;
+}
+@media (min-width: 601px) {
+  /* line 131, ../sass/styles.scss */
+  .search__results {
+    width: 320px;
+  }
+}
+/* line 140, ../sass/styles.scss */
+.search__results li,
+.search__results a {
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 30px;
+  color: #595959;
+}
+/* line 148, ../sass/styles.scss */
+.search__results li {
+  background-color: #fff;
+  color: #595959;
+}
+/* line 151, ../sass/styles.scss */
+.search__results li.selected {
+  background-color: #595959;
+}
+/* line 153, ../sass/styles.scss */
+.search__results li.selected a {
+  color: #fff;
+}
+/* line 159, ../sass/styles.scss */
+.search.visible {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: all 0.7s ease-in 0.1s;
+  -ms-transition: all 0.7s ease-in 0.1s;
+  -o-transition: all 0.7s ease-in 0.1s;
+  transition: all 0.7s ease-in 0.1s;
+}
+
+/* line 167, ../sass/styles.scss */
+.weather {
+  width: 100%;
+  font-size: 0;
+  margin: 0 0 40px;
+  text-align: center;
+}
+
+/* line 174, ../sass/styles.scss */
+.weather,
+.local-weather,
+.info-weather {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* line 182, ../sass/styles.scss */
+.local-weather {
+  position: relative;
+  display: inline-block;
+  width: -webkit-calc(100% - 40px);
+  width: -moz-calc(100% - 40px);
+  width: calc(100% - 40px);
+  border-radius: 20px;
+  margin: 20px;
+  padding: 40px 0;
+  text-align: center;
+  background-color: rgba(163, 186, 195, 0.4);
+  z-index: 50;
+}
+/* line 192, ../sass/styles.scss */
+.local-weather h2,
+.local-weather .icon,
+.local-weather p {
+  position: relative;
+  color: #fff;
+  z-index: 100;
+}
+/* line 199, ../sass/styles.scss */
+.local-weather h2 {
+  font-size: 18px;
+}
+@media (min-width: 601px) {
+  /* line 199, ../sass/styles.scss */
+  .local-weather h2 {
+    font-size: 35px;
+  }
+}
+@media (min-width: 769px) {
+  /* line 199, ../sass/styles.scss */
+  .local-weather h2 {
+    font-size: 35px;
+  }
+}
+/* line 208, ../sass/styles.scss */
+.local-weather .icon {
+  font-size: 80px;
+  margin: 15px auto;
+}
+@media (min-width: 601px) {
+  /* line 208, ../sass/styles.scss */
+  .local-weather .icon {
+    font-size: 200px;
+    margin: 40px auto;
+  }
+}
+@media (min-width: 769px) {
+  /* line 208, ../sass/styles.scss */
+  .local-weather .icon {
+    font-size: 250px;
+    margin: 50px auto;
+  }
+}
+/* line 220, ../sass/styles.scss */
+.local-weather p {
+  font-size: 16px;
+}
+@media (min-width: 601px) {
+  /* line 220, ../sass/styles.scss */
+  .local-weather p {
+    font-size: 28px;
+  }
+}
+@media (min-width: 769px) {
+  /* line 220, ../sass/styles.scss */
+  .local-weather p {
+    font-size: 30px;
+  }
+}
+@media (min-width: 601px) {
+  /* line 182, ../sass/styles.scss */
+  .local-weather {
+    width: -webkit-calc(100% - 100px);
+    width: -moz-calc(100% - 100px);
+    width: calc(100% - 100px);
+    margin: 50px;
+    padding: 50px 0;
+  }
+}
+@media (min-width: 769px) {
+  /* line 182, ../sass/styles.scss */
+  .local-weather {
+    width: -webkit-calc(60% - 60px);
+    width: -moz-calc(60% - 60px);
+    width: calc(60% - 60px);
+    margin: 30px;
+  }
+}
+@media (min-width: 981px) {
+  /* line 182, ../sass/styles.scss */
+  .local-weather {
+    max-width: 600px;
+    width: -webkit-calc(70% - 60px);
+    width: -moz-calc(70% - 60px);
+    width: calc(70% - 60px);
+  }
+}
+
+/* line 246, ../sass/styles.scss */
+.info-weather {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin: 10px auto;
+}
+/* line 251, ../sass/styles.scss */
+.info-weather p,
+.info-weather span {
+  font-size: 16px;
+  margin-bottom: 10px;
+  letter-spacing: 5;
+  font-weight: 600;
+}
+@media (min-width: 601px) {
+  /* line 251, ../sass/styles.scss */
+  .info-weather p,
+  .info-weather span {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+}
+@media (min-width: 769px) {
+  /* line 251, ../sass/styles.scss */
+  .info-weather p,
+  .info-weather span {
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 769px) {
+  /* line 246, ../sass/styles.scss */
+  .info-weather {
+    margin: 20px auto;
+    width: -webkit-calc(40% - 40px);
+    width: -moz-calc(40% - 40px);
+    width: calc(40% - 40px);
+  }
+  /* line 268, ../sass/styles.scss */
+  .info-weather p,
+  .info-weather span {
+    font-size: 30px;
+  }
+}
+@media (min-width: 981px) {
+  /* line 246, ../sass/styles.scss */
+  .info-weather {
+    width: -webkit-calc(30% - 40px);
+    width: -moz-calc(30% - 40px);
+    width: calc(30% - 40px);
+  }
+}
