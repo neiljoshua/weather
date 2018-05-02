@@ -181,7 +181,7 @@ $(document).ready(function() {
 	function toggleResults() {
     var $listItems = $('li');
 
-		$('.search__input').keydown(function(e)
+		$('.search__input').keyup(function(e)
 		{
 		    var key = e.keyCode,
 		        $selected = $listItems.filter('.selected'),
