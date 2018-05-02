@@ -309,6 +309,7 @@ $(document).ready(function() {
 	});
 
 	var check_Lenght_Input = function(){
+
 		$('.search__input').keyup(function () {
 			var keyEntered = $(this).val();
 				if ( keyEntered == '') {
@@ -316,6 +317,7 @@ $(document).ready(function() {
 					keyTriggered = 0;
 				}
 		});
+
 	}
 
 	// Starts searching on search__input input.
@@ -331,20 +333,21 @@ $(document).ready(function() {
 	});
 
 	$('.find').on( 'click', function (e) {
+
 		event.preventDefault();
 		$('.search').addClass('visible');
 		$('header').addClass('hidden');
+
 	});
 
 	$('.cancel').on( 'click', function (e) {
+
 		event.preventDefault();
 		$('.search').removeClass('visible');
 		$('header').removeClass('hidden');
-	});
-
-	$('.search__input').on('blur',function (){
 		$('.search__results').empty();
-		$(this).val('');
+		$('.search__input').val('');
+
 	});
 
 }); // End of doc ready.
