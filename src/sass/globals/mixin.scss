@@ -1,63 +1,63 @@
 @mixin even(){
-	&:nth-child(even) {
-		@content
-	}
+  &:nth-child(even) {
+    @content
+  }
 }
 
 @mixin odd(){
-	&:nth-child(odd) {
-		@content
-	}
+  &:nth-child(odd) {
+    @content
+  }
 }
 
 // media queries
 @mixin media($type) {
-	@if $type == tablet {
-		@media (max-width: 768px)  { @content; }
-	}
-	@else if $type == mobile {
-		@media (max-width: 600px)  { @content; }
-	}
+  @if $type == tablet {
+    @media (max-width: 768px)  { @content; }
+  }
+  @else if $type == mobile {
+    @media (max-width: 600px)  { @content; }
+  }
 }
 
 @mixin stroke($str) {
-	-webkit-stroke: #{$str};
-	-moz-stroke: #{$str};
-	-ms-stroke: #{$str};
-	-o-stroke: #{$str};
-	stroke: #{$str};
+  -webkit-stroke: #{$str};
+  -moz-stroke: #{$str};
+  -ms-stroke: #{$str};
+  -o-stroke: #{$str};
+  stroke: #{$str};
 }
 
 @mixin stroke-width($str) {
-	-webkit-stroke-width: #{$str};
-	-moz-stroke-width: #{$str};
-	-ms-stroke-width: #{$str};
-	-o-stroke-width: #{$str};
-	stroke-width: #{$str};
+  -webkit-stroke-width: #{$str};
+  -moz-stroke-width: #{$str};
+  -ms-stroke-width: #{$str};
+  -o-stroke-width: #{$str};
+  stroke-width: #{$str};
 }
 
 @mixin stroke-dasharray($str) {
-	-webkit-stroke-dasharray: #{$str};
-	-moz-stroke-dasharray: #{$str};
-	-ms-stroke-dasharray: #{$str};
-	-o-stroke-dasharray: #{$str};
-	stroke-dasharray: #{$str};
+  -webkit-stroke-dasharray: #{$str};
+  -moz-stroke-dasharray: #{$str};
+  -ms-stroke-dasharray: #{$str};
+  -o-stroke-dasharray: #{$str};
+  stroke-dasharray: #{$str};
 }
 
 @mixin stroke-dashoffset($str) {
-	-webkit-stroke-dashoffset: #{$str};
-	-moz-stroke-dashoffset: #{$str};
-	-ms-stroke-dashoffset: #{$str};
-	-o-stroke-dashoffset: #{$str};
-	stroke-dashoffset: #{$str};
+  -webkit-stroke-dashoffset: #{$str};
+  -moz-stroke-dashoffset: #{$str};
+  -ms-stroke-dashoffset: #{$str};
+  -o-stroke-dashoffset: #{$str};
+  stroke-dashoffset: #{$str};
 }
 
 
 // CSS3 calc() function to perform calculations
 @mixin calc($property, $expression) {
-	#{$property}: -webkit-calc(#{$expression});
-	#{$property}: -moz-calc(#{$expression});
-	#{$property}: calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: calc(#{$expression});
 }
 
 /// Mixin to prefix a property
@@ -66,48 +66,48 @@
 /// @param {*} $value - Property value
 /// @param {List} $prefixes (()) - List of prefixes to print
 @mixin prefix($property, $value, $prefixes: ()) {
-	@each $prefix in $prefixes {
-		#{'-' + $prefix + '-' + $property}: $value;
-	}
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
 
-	// Output standard non-prefixed declaration
-	#{$property}: $value;
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
 }
 
 // media queries
 @mixin media($type) {
-		@if $type == desktop {
-				@media (max-width: 980px) { @content; }
-		}
-		@if $type == tablet {
-				@media (max-width: 768px)  { @content; }
-		}
-		@else if $type == mobile {
-				@media (max-width: 600px)  { @content; }
-		}
+  @if $type == desktop {
+    @media (max-width: 980px) { @content; }
+  }
+  @if $type == tablet {
+    @media (max-width: 768px)  { @content; }
+  }
+  @else if $type == mobile {
+    @media (max-width: 600px)  { @content; }
+  }
 }
 
 @mixin media-max-width($type) {
-		@if $type == desktop {
-				@media (max-width: 980px) { @content; }
-		}
-		@if $type == tablet {
-				@media (max-width: 768px)  { @content; }
-		}
-		@else if $type == mobile {
-				@media (max-width: 600px)  { @content; }
-		}
+  @if $type == desktop {
+    @media (max-width: 980px) { @content; }
+  }
+  @if $type == tablet {
+    @media (max-width: 768px)  { @content; }
+  }
+  @else if $type == mobile {
+    @media (max-width: 600px)  { @content; }
+  }
 }
 
 // media queries
 @mixin media-min-width($type) {
-		@if $type == desktop {
-				@media (min-width: 980px + 1) { @content; }
-		}
-		@if $type == tablet {
-				@media (min-width: 768px + 1)  { @content; }
-		}
-		@else if $type == mobile {
-				@media (min-width: 600px + 1)  { @content; }
-		}
+  @if $type == desktop {
+    @media (min-width: 980px + 1) { @content; }
+  }
+  @if $type == tablet {
+    @media (min-width: 768px + 1)  { @content; }
+  }
+  @else if $type == mobile {
+    @media (min-width: 600px + 1)  { @content; }
+  }
 }
