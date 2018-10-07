@@ -1,8 +1,6 @@
 module.exports = function(grunt) {
 
-// Project configuration.
 grunt.initConfig({
-  // Tasks
   compass: {
     dist: {
       options: {
@@ -17,7 +15,7 @@ grunt.initConfig({
 	  my_target: {
       files: {
         'weather.min.js': ['src/js/weather.js'],
-        'vendor.min.js': ['src/js/vendor/*.min.js']
+        'vendor.min.js': ['src/js/vendor/*.js']
       }
     }
 	},
