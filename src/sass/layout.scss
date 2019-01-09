@@ -1,7 +1,7 @@
 header {
   display: inline-block;
   @include calc( width, '100% - 40px');
-  padding: 20px 20px 0 20px;
+  padding: 20px;
   font-size: 0;
   vertical-align: middle;
   @include prefix(transition, opacity .6s ease-in, webkit ms o);
@@ -25,12 +25,12 @@ body {
   position: relative;
   width: 100%;
   z-index: 1;
+  height: 100vh;
   min-height: 100vh;
   font-family: 'RobotoSlab-Thin';
   background: url('/src/images/weather.jpg') center center no-repeat;
   @include prefix(background-size, cover, webkit ms o);
   background-size: 100% 100%;
-  padding-bottom: 60px;
   @include media-min-width(mobile) {
     margin: 0  auto;
     padding-bottom: 0;
@@ -158,8 +158,13 @@ body {
 .weather {
   width: 100%;
   font-size: 0;
-  margin: 0 0 40px;
   text-align: center;
+  @include media-min-width(tablet) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include prefix(transform, translateY(-50%) translateX(-50%), webkit ms);
+  }
 }
 
 .weather,
@@ -173,19 +178,31 @@ body {
 .local-weather {
   position: relative;
   display: inline-block;
-  @include calc( width, '100% - 40px');
+  width: 60%;
   border-radius: 20px;
-  margin: 20px;
-  padding: 40px 0;
+  margin: 0 auto;
+  padding: 40px 20px;
   text-align: center;
   background-color: rgba($weather-background-color, 0.4 );
   z-index: 50;
+  // @include media-min-width(mobile) {
+  //   @include calc( width, '100% - 100px');
+  //   margin: 50px;
+  //   padding: 50px 0;
+  // }
+  @include media-min-width(tablet) {
+    @include calc( width, '60% - 60px');
+    margin: 30px;
+  }
+  @include media-min-width(desktop) {
+    max-width: 600px;
+    @include calc( width, '70% - 60px');
+  }
+
   h2,
   .icon,
   p {
-    position: relative;
     color: $white;
-    z-index: 100;
   }
   h2 {
     font-size: 18px;
@@ -217,28 +234,13 @@ body {
       font-size: 30px;
     }
   }
-
-  @include media-min-width(mobile) {
-    @include calc( width, '100% - 100px');
-    margin: 50px;
-    padding: 50px 0;
-  }
-  @include media-min-width(tablet) {
-    @include calc( width, '60% - 60px');
-    margin: 30px;
-  }
-  @include media-min-width(desktop) {
-    max-width: 600px;
-    @include calc( width, '70% - 60px');
-  }
-
 }
 
 .info-weather {
   display: inline-block;
   width: 100%;
   text-align: center;
-  margin: 10px auto;
+  margin: 40px auto;
   p,
   span {
     font-size: 16px;
