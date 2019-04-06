@@ -104,7 +104,7 @@ $(document).ready(function() {
         city = city,
         apiKey='vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
         element = $('.autocomplete__list'),
-        url = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="+apiKey+"&q="+city+"";
+        url = "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="+apiKey+"&q="+city+"";
 
     $('.autocomplete__list').empty();
     $.getJSON(url, function(jsonp){
@@ -150,7 +150,7 @@ $(document).ready(function() {
         $element = $('.local-weather'),
         $details = $('.info-weather'),
         apiKey = 'vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
-        Weather ="http://dataservice.accuweather.com/currentconditions/v1/"+cityKey+"?apikey="+apiKey+"&details=true";
+        Weather ="https://dataservice.accuweather.com/currentconditions/v1/"+cityKey+"?apikey="+apiKey+"&details=true";
 
     $.ajax({
       url : Weather,
@@ -198,7 +198,7 @@ $(document).ready(function() {
 
   function loadTodayWeather(cityKey) {
     var apiKey = 'vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
-        Weather ="http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+cityKey+"?apikey="+apiKey,
+        Weather ="https://dataservice.accuweather.com/forecasts/v1/daily/1day/"+cityKey+"?apikey="+apiKey,
         $details = $('.details-weather');
 
     $.ajax({
@@ -225,7 +225,7 @@ $(document).ready(function() {
 
     var $element = $('.forecast__col'),
         apiKey = 'vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
-        url = "http://dataservice.accuweather.com//forecasts/v1/daily/5day/"+cityKey+"?apikey="+apiKey;
+        url = "https://dataservice.accuweather.com//forecasts/v1/daily/5day/"+cityKey+"?apikey="+apiKey;
 
     $.ajax({
       url : url,
