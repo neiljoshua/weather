@@ -1,68 +1,63 @@
-header {
-  display: inline-block;
-  @include calc( width, '100% - 40px');
-  padding: 20px;
-  font-size: 0;
-  vertical-align: middle;
-  @include prefix(transition, opacity .6s ease-in, webkit ms o);
-  @include media-min-width(tablet) {
-    @include calc( width, '100% - 60px');
-    padding: 20px 30px;
-  }
-  &.hidden {
-    opacity: 0;
-    @include prefix(transition, opacity .6s ease-in .1s, webkit ms o);
-  }
-}
 html,
-.wrapper,
 body {
-  color: $white;
   font-family: 'RobotoSlab-Thin';
+  color: $white;
+  min-height: 100%;
+}
+body {
+  background: url('/src/images/weather.jpg') center center no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
+  width: 100%;
+  text-align: center;
+  @include media-min-width(desktop) {
+    padding: 40px;
+    text-align: left;
+  }
+  .location {
+    margin: 10px 0 0 10px;
+    &__title,
+    &__icon {
+      display: inline-block;
+      font-size: 20px;
+      @include media-min-width(tablet) {
+        font-size: 22px;
+      }
+      @include media-min-width(tablet) {
+        font-size: 28px;
+      }
+    }
+  }
+
 }
 
 .wrapper {
   position: relative;
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   z-index: 1;
-  height: 100vh;
   min-height: 100vh;
-  font-family: 'RobotoSlab-Thin';
-  background: url('/src/images/weather.jpg') center center no-repeat;
-  @include prefix(background-size, cover, webkit ms o);
-  background-size: 100% 100%;
-  @include media-min-width(mobile) {
-    margin: 0  auto;
-    padding-bottom: 0;
-  }
+  background: rgba( black, 0.7);
 }
 
 .logo {
-  display: inline-block;
-  width: 90%;
+  display: block;
+  margin-bottom: 30px;
+  text-align: center;
   font-family: 'RobotoSlab-Thin';
   font-size: 35px;
-  height: 100%;
-  font-size: 600;
   @include media-min-width(mobile) {
-    font-size: 50px;
-  }
-}
-
-.find {
-  display: inline-block;
-  width: 10%;
-  text-align: right;
-  font-size: 35px;
-  .icon-search {
     display: inline-block;
-    vertical-align: middle;
-    font-size: 30px;
-    color: $white;
-    margin-bottom: 10px;
-  }
-  @include media-min-width(mobile) {
-    font-size: 55px;
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 50px;
   }
 }
 
@@ -80,26 +75,45 @@ body {
   }
 }
 
-.search {
+.autocomplete {
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
   bottom: 0;
-  opacity: 0;
-  @include calc( width, '100% - 40px');
-  padding: 20px;
-  background-color: rgba($weather-background-color, 0.7);
-  visibility: hidden;
-  @include prefix(transition, all .7s ease-in .1s, webkit ms o);
-  z-index: 200;
+  right: -100%;
+  width: 0;
+  padding: 20px 0;
+  background-color: rgba($weather-background-color, 0.8 );
+  transition: all 0.4s ease-in-out;
+  width: calc(100% - 40px);
+  float: right;
+  z-index: 500;
+  @include media-min-width(mobile) {
+    padding: 30px;
+    width: calc(100% - 60px);
+  }
+  @include media-min-width(tablet) {
+    padding: 20px;
+  }
+  &.visible {
+    right: 0;
+    width: 100%;
+    @include media-min-width(tablet) {
+      width: 340px;
+    }
+    transition: all 0.4s ease-in-out;
+  }
   &__form {
     display: block;
-    width: 270px;
-    margin: 0 auto;
-    border-bottom: 1px solid $white;
+    width: 260px;
+    margin: 60px auto 0;
+    border: 1px solid $white;
+    border-radius: 15px;
     @include media-min-width(mobile) {
       width: 320px;
+    }
+    @include media-min-width(tablet) {
+      margin: 80px auto 0;
     }
   }
   &__input {
@@ -119,151 +133,232 @@ body {
       width: 320px;
     }
   }
-  &__results {
-    display: block;
+  &__list {
+    display: none;
     width: 270px;
     margin: 0 auto;
     text-align: center;
     overflow-y: scroll;
+    border-radius: 0 0 10px 10px;
+    &.visible {
+      display: block;
+    }
     @include media-min-width(mobile) {
       width: 320px;
     }
-    li,
-    a {
-      font-size: 20px;
-      text-align: center;
-      text-decoration: none;
-      line-height: 30px;
-      color: $gray;
-    }
-    li {
-      background-color: $white;
-      color: $gray;
-      &.selected{
-        background-color: $gray;
-        a {
-          color: $white;
-        }
-      }
-    }
   }
-  &.visible {
-    visibility: visible;
-    opacity: 1;
-    @include prefix(transition, all .7s ease-in .1s, webkit ms o);
+  &__item {
+    padding: 10px 0;
+    font-size: 16px;
+    font-family: $sanserif;
+    &.selected {
+      background-color: $silver;
+      color: $black;
+    }
+    @include media-min-width(mobile) {
+      font-size: 18px;
+    }
   }
 
 }
 
-.weather {
-  width: 100%;
-  font-size: 0;
-  text-align: center;
+main {
+  justify-content: center;
+  padding: 0 20px;
+  width: calc( 100% - 40px );
+  @include media-min-width(mobile) {
+    padding: 0 30px;
+    width: calc( 100% - 60px );
+  }
   @include media-min-width(tablet) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    @include prefix(transform, translateY(-50%) translateX(-50%), webkit ms);
+    padding: 0 40px;
+    width: calc( 100% - 80px );
   }
 }
 
-.weather,
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  @include media-min-width(desktop) {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
+
 .local-weather,
 .info-weather {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   vertical-align: middle;
 }
 
 
 .local-weather {
   position: relative;
-  display: inline-block;
-  width: 60%;
+  flex-direction: column;
   border-radius: 20px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px;
   text-align: center;
-  background-color: rgba($weather-background-color, 0.4 );
+  background-color: rgba($black, 0.4 );
+  @include prefix( box-shadow,  0px 0px 15px 5px rgba(0,0,0,0.1), webkit ms);
   z-index: 50;
-  // @include media-min-width(mobile) {
-  //   @include calc( width, '100% - 100px');
-  //   margin: 50px;
-  //   padding: 50px 0;
-  // }
-  @include media-min-width(tablet) {
-    @include calc( width, '60% - 60px');
-    margin: 30px;
-  }
-  @include media-min-width(desktop) {
-    max-width: 600px;
-    @include calc( width, '70% - 60px');
-  }
-
-  h2,
+  .location,
   .icon,
   p {
     color: $white;
   }
-  h2 {
+  .location {
     font-size: 18px;
+    margin-bottom: 20px;
     @include media-min-width(mobile) {
-      font-size: 35px
+      font-size: 22px
     }
      @include media-min-width(tablet) {
-      font-size: 35px;
+      font-size: 26px;
+     }
+  }
+  .temp {
+    font-size: 60px;
+    @include media-min-width(tablet) {
+      font-size: 80px;
      }
   }
   .icon {
-    font-size: 80px;
-    margin: 15px auto;
+    font-size: 60px;
+    margin-bottom: 15px;
     @include media-min-width(mobile) {
-      font-size: 200px;
-      margin: 40px auto;
-     }
-    @include media-min-width(tablet) {
-      font-size: 250px;
-      margin: 50px auto;
+      font-size: 80px;
+      margin-bottom: 0;
      }
   }
   p {
     font-size: 16px;
     @include media-min-width(mobile) {
-      font-size: 28px;
+      font-size: 18px;
     }
     @include media-min-width(tablet) {
-      font-size: 30px;
+      font-size: 22px;
     }
   }
 }
 
 .info-weather {
-  display: inline-block;
-  width: 100%;
   text-align: center;
   margin: 40px auto;
-  p,
-  span {
-    font-size: 16px;
-    margin-bottom: 10px;
-    letter-spacing: 5;
-    font-weight: 600;
+  @include media-min-width(mobile) {
+    flex-direction: row;
+  }
+  &__col {
+    display: block;
+    font-size: 0;
+    margin: 0 auto;
+    max-width: 65%;
+    width: calc(100% - 60px);
     @include media-min-width(mobile) {
-      font-size: 24px;
-      margin-bottom: 25px;
+      max-width: 60%;
+      padding: 0 15px;
     }
-    @include media-min-width(tablet) {
+    @include media-min-width(desktop) {
+      max-width: 55%;
+    }
+    @include media-min-width(desktop) {
+      display: inline-block;
+      width: calc(50% - 60px);
+      padding: 20px 30px;
+    }
+
+    p {
+      display: inline-block;
+      width: 50%;
+      margin-bottom: 10px;
+      font-size: 16px;
+      border-bottom: 1px solid white;
+      padding-bottom: 15px;
+      &:nth-child(odd) {
+        text-align: left;
+      }
+      &:nth-child(even) {
+        text-align: right;
+      }
+      @include media-min-width(desktop) {
+        width: 50%;
+        font-size: 18px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+
+.forecast-container {
+  @include media-max-width(desktop) {
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 250px;
+    padding-bottom: 120px;
+  }
+}
+
+.forecast {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+  @include media-max-width(desktop) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &__col {
+    width: 125px;
+    text-align: center;
+    margin: 10px;
+    padding: 40px 20px;
+    background: rgba($black, 0.4);
+    @include prefix( box-shadow,  0px 0px 15px 5px rgba(0,0,0,0.1), webkit ms);
+    @include media-min-width(desktop) {
+      width: 138px;
+    }
+    .date {
       margin-bottom: 20px;
     }
-  }
-  @include media-min-width(tablet) {
-    margin: 20px auto;
-    @include calc( width, '40% - 40px');
-    p,
-    span {
-      font-size: 30px;
+    .icon {
+      font-size: 40px;
+    }
+    p {
+      font-size: 16px;
+      margin: 15px auto;
     }
   }
-  @include media-min-width(desktop) {
-    @include calc( width, '30% - 40px');
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  width: calc(100% - 60px);
+  background: rgba($black, 0.4 );
+  &__copyright {
+    text-align: center;
+    font-size: 14px;
+    @include media-min-width(tablet) {
+      font-size: 16px;
+    }
+  }
+  @include media-max-width(tablet) {
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+  }
+  @include media-min-width(tablet) {
+    align-items: flex-end;
+    padding: 20px 40px;
+    width: calc(100% - 80px);
+    background: none;
   }
 }

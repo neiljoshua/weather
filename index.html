@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en-US">
   <head>
     <title>Weather</title>
     <meta charset="utf-8">
@@ -13,39 +14,91 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="logo">Weather</h1>
-        <a href="#" class="find"><i class="icon-search"></i></a>
+        <div class="location">
+          <h1 class="location__title"></h1>
+          <span class="location__icon"></span>
+        </div>
+        <a  href="/" class="hamburger hamburger--rot" ><span>Toggle Menu</span>
+        </a>
       </header>
-      <div class="weather">
-        <div class="local-weather" data-city='New York' data-state="NY">
-          <h2 class="location"></h2>
-          <div class="icon"></div>
-          <p><span class="temp"> </span>&deg; F And <span class="desc"> </span> </p>
-        </div>
-        <div class="info-weather">
-          <p> Feels : <span class="feels"> </span><span>&deg;</span></p>
-          <p> Wind : <span class="wind"> </span> MPH.</p>
-          <p> Humidity : <span class="humidity"> </span></p>
-          <p> Dew Point : <span class="dew-point"></span><span>&deg;</span></p>
-          <p> Pressure :  <span class="pressure">  </span></p>
-        </div>
-      </div>
-      <div class="search">
-        <a href="#" class="cancel"><i class="icon-cancel"></i></a>
-        <form class="search__form" action="search" >
-          <input class="search__input" type="text" autocomplete = "off" name="city_name" placeholder="City, State">
-          <ul class="search__results">
+      <div class="autocomplete">
+        <form class="autocomplete__form" action="search" >
+          <input class="autocomplete__input" type="text" autocomplete = "off" name="city_name" placeholder="City, State">
+          <ul class="autocomplete__list">
           </ul>
         </form>
       </div>
-    </div>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82838385-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      <main>
+        <section>
+          <div class="local-weather" data-citykey="349727" data-city='New York' data-country="US">
+            <h2 class="location"></h2>
+            <div class="icon"></div>
+            <p><span class="temp"> </span> <sup>&deg;</sup>F And <span class="desc"> </span> </p>
+          </div>
+          <div class="info-weather">
+            <div class="info-weather__col" >
+              <p> <span>Feels :</span></p> <p>  <span class="feels"></span>°</p>
+              <p> <span> Wind : </span></p> <p> <span class="wind"></span> mph </p>
+              <p> <span>Humidity :</span> </p> <p> <span class="humidity"></span>%</p>
+              <p> <span>Maximum :</span> </p> <p> <span class="maximum"></span>°</p>
+              <p> <span>Mimimum :</span> </p> <p> <span class="minimum"></span>°</p>
+            </div >
+            <div class="info-weather__col" >
+              <p> <span>Dew Point :</span> </p> <p> <span class="dew-point"></span>°</p>
+              <p> <span>pressure :</span> </p> <p><span class="pressure"></span> in</p>
+              <p> <span>Visibility :</span> </p> <p><span class="visibility"> </span> mi</p>
+              <p> <span>UV Index :</span> </p> <p> <span class="uv-index"> </span> of 10</p>
+              <p> <span>UV Index :</span> </p> <p> <span class="uv-index-text"></span></p>
+            </div>
+          </div>
+        </section>
+        <section class="forecast-container">
+          <div class="forecast">
+            <div class="forecast__col day-1">
+              <h3 class="date">Today</h3>
+              <div class="icon"></div>
+              <p class="max" >59</p>
+              <p class="min" >35</p>
+            </div>
+            <div class="forecast__col day-2">
+              <h3 class="date">Today</h3>
+              <div class="icon"></div>
+              <p class="max" >60</p>
+              <p class="min" >36</p>
+            </div>
+            <div class="forecast__col day-3">
+              <h3 class="date">Today</h3>
+              <div class="icon"></div>
+              <p class="max" >60</p>
+              <p class="min" >36</p>
+            </div>
+            <div class="forecast__col day-4">
+              <h3 class="date">Today</h3>
+              <div class="icon"></div>
+              <p class="max" >60</p>
+              <p class="min" >36</p>
+            </div>
+            <div class="forecast__col day-5">
+              <h3 class="date">Today</h3>
+              <div class="icon"></div>
+              <p class="max" >60</p>
+              <p class="min" >36</p>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">Copyright 2019 &copy; neiljoshua.dev</p>
 
-      gtag('config', 'UA-82838385-3');
-    </script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82838385-3"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-82838385-3');
+        </script>
+      </footer>
+    </div>
   </body>
 </html>

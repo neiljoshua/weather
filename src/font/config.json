@@ -7,6 +7,54 @@
   "ascent": 850,
   "glyphs": [
     {
+      "uid": "2440f961b415837c6bf30424a6711708",
+      "css": "cloud-moon",
+      "code": 59395,
+      "src": "meteocons"
+    },
+    {
+      "uid": "957fd72e52a0e9eb585a0361114c4c83",
+      "css": "fog-sun",
+      "code": 59392,
+      "src": "meteocons"
+    },
+    {
+      "uid": "dbf0f9c3d15e5e8046bb5f5fb5898b49",
+      "css": "fog-moon",
+      "code": 59393,
+      "src": "meteocons"
+    },
+    {
+      "uid": "aba39b610b88a73d81f0fa683649b92d",
+      "css": "fog-cloud",
+      "code": 59394,
+      "src": "meteocons"
+    },
+    {
+      "uid": "2ca5a006e414e0827f7fc5b187689c04",
+      "css": "fog",
+      "code": 59396,
+      "src": "meteocons"
+    },
+    {
+      "uid": "34e68aa8fbf61f02a748043ccf448a3b",
+      "css": "moon",
+      "code": 59392,
+      "src": "meteocons"
+    },
+    {
+      "uid": "5fad7d41511701337ddd5ad9896edc4b",
+      "css": "windy",
+      "code": 59393,
+      "src": "meteocons"
+    },
+    {
+      "uid": "86351391d6cbc7a85730414294139661",
+      "css": "windy-rain",
+      "code": 59394,
+      "src": "meteocons"
+    },
+    {
       "uid": "bf882b30900da12fca090d9796bc3030",
       "css": "mail-1",
       "code": 59392,

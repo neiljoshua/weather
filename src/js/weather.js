@@ -1,350 +1,318 @@
 $(document).ready(function() {
 
-  var keyTriggered = 0;
+  var counter = 0;
 
-  $('.search__results').on('click', 'a',function(e){
+  $('.autocomplete__list').on('click', 'li',function(e) {
     e.preventDefault();
-    var cityLocation = $(this).data('url');
-    getWeather(cityLocation);
+
+    var cityKey = $(this).data('key'),
+        city = $(this).data('city'),
+        country = $(this).data('country');
+
+    loadLocalWeather(cityKey, city, country);
+    loadTodayWeather(cityKey);
+    $('.autocomplete__input:text').val('');
+    $('.autocomplete__list').removeClass('visible');
+    $('.autocomplete__list').empty();
+    $('.autocomplete').removeClass('visible');
+    $('.hamburger').removeClass('is-active');
   });
 
-  $('.search__form').submit( function (e){
+  $('.autocomplete__form').submit( function (e) {
     e.preventDefault();
   });
 
-  $('.search__input').on('keypress',function (e){
-    var keyEntered = $(this).val();
+  $('.hamburger').on( 'click', function (e) {
+    e.preventDefault();
 
-    keyTriggered++;
-    if (keyTriggered >=2 ) {
-      getCities();
+    $(this).toggleClass('is-active');
+    $('.autocomplete').toggleClass('visible');
+  });
+
+  $(document).keyup( '.autocomplete__input', function(e) {
+    e.preventDefault();
+
+    var key = e.which,
+        listItems = $('li'),
+        selected = listItems.filter('.selected'),
+        city = $('.autocomplete__input').val(),
+        current;
+
+    if ( key != 40 && key != 38 && key != 13 && key != 8 ) {
+
+      counter++;
+      if ( counter >= 2) {
+        $('.autocomplete__list').addClass('visible');
+        loadCitiesList(city);
+      }
+
     }
-    if ( keyEntered == '') {
-      $('.search__results').empty();
-      keyTriggered = 0;
+    else {
+      listItems.removeClass('selected');
+
+      if ( key == 40 ) // Down key
+      {
+          if ( ! selected.length || selected.is(':last-child') ) {
+              current = listItems.eq(0);
+          }
+          else {
+              current = selected.next();
+          }
+          current.addClass('selected');
+      }
+      else if ( key == 38 ) // Up key
+      {
+          if ( ! selected.length || selected.is(':first-child') ) {
+              current = listItems.last();
+          }
+          else {
+              current = selected.prev();
+          }
+          current.addClass('selected');
+      }
+      else if ( key == 8 ) // Delete key
+      {
+        if ( $('.autocomplete__input').val() == '') {
+          $('.autocomplete__list').removeClass('visible');
+          $('.autocomplete__list').empty();
+        }
+      }
+      else if ( key == 13 ) // Enter Key
+      {
+        e.stopPropagation();
+        var cityKey = selected.data('key'),
+            city = selected.data('city'),
+            country = selected.data('country');
+
+        $('.autocomplete__list').empty();
+        loadLocalWeather(cityKey, city , country);
+        loadFiveDayForecast(cityKey);
+
+        $('.autocomplete__input').val('');
+        $('.autocomplete').removeClass('visible');
+        $('.autocomplete__list').removeClass('visible');
+        $('.autocomplete__list').empty();
+        $('.hamburger').removeClass('is-active');
+      }
+
     }
-
   });
 
-  $('.find').on( 'click', function (e) {
-
-    e.preventDefault();
-    $('.search').addClass('visible');
-    $('header').addClass('hidden');
-
-  });
-
-  $('.cancel').on( 'click', function (e) {
-
-    e.preventDefault();
-    $('.search').removeClass('visible');
-    $('header').removeClass('hidden');
-    $('.search__results').empty();
-    $('.search__input').val('');
-
-  });
-
-  function local_weather() {
-    var $element = $('.local-weather'),
-        $details = $('.info-weather'),
-        state = $element.data('state'),
-        city = $element.data('city'),
-        key = '6d21846ad7649b70',
-        Weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+state+"/"+city+".json";
-
-    $.ajax({
-      url : Weather,
-      dataType : "jsonp",
-      success : function(results) {
-        var location = results.current_observation.display_location.full,
-            temp = results.current_observation.temp_f,
-            desc = results.current_observation.weather,
-            icon =results.current_observation.icon,
-            feels =results.current_observation.feelslike_f,
-            wind = results.current_observation.wind_gust_mph,
-            humidity = results.current_observation.relative_humidity,
-            dewpoint = results.current_observation.dewpoint_f,
-            pressure = results.current_observation.pressure_mb;
-
-        $element.find('.location').html(location);
-        $element.find('.temp').html(Math.round(temp));
-        $element.find('.desc').html(desc);
-        $element.find('.icon').addClass(Icons[desc]);
-        $details.find('.feels').html(Math.round(feels));
-        $details.find('.wind').html(Math.round(wind));
-        $details.find('.humidity').html(humidity);
-        $details.find('.dew-point').html(dewpoint);
-        $details.find('.pressure').html(pressure);
-      }
-    });
-  }
-
-  local_weather();
-
-  var Icons = {
-    "Drizzle":"icon-rain",
-    "Light Drizzle":"icon-rain",
-    "Heavey Drizzle":"icon-rain",
-    "Rain":"icon-rain",
-    "Light Rain":"icon-rain",
-    "Heavy Rain":"icon-rain",
-    "Snow":"icon-snow",
-    "Light Snow":"icon-snow",
-    "Heavy Snow":"icon-snow",
-    "Light Snow Grains":"icon-snow",
-    "Heavy Snow Grains":"icon-snow",
-    "Snow Grains":"icon-snow",
-    "Light Ice Crystals":"icon-hail",
-    "Heavey Ice Crystals":"icon-hail",
-    "Ice Crystals":"icon-hail",
-    "Light Ice Pellets":"icon-hail",
-    "Heavey Ice Pellets":"icon-hail",
-    "Pellets":"icon-hail",
-    "Mist":"icon-clouds",
-    "Light Mist":"icon-clouds",
-    "Heavy Mist":"icon-clouds",
-    "Fog":"icon-clouds",
-    "Light Fog":"icon-clouds",
-    "Heavy Fog":"icon-clouds",
-    "Fog Patches":"icon-clouds",
-    "Light Fog Patches":"icon-clouds",
-    "Heavy Fog Patches":"icon-clouds",
-    "Smoke":"icon-clouds",
-    "Light Smoke":"icon-clouds",
-    "Heavy Smoke":"icon-clouds",
-    "Volcanic Ash":"icon-clouds",
-    "Light Volcanic Ash":"icon-clouds",
-    "Heavy Volcanic Ash":"icon-clouds",
-    "Wide Spread Dust":"icon-clouds",
-    "Light Wide Spread Dust":"icon-clouds",
-    "Heavy Wide Spread Dust":"icon-clouds",
-    "Sand":"icon-clouds",
-    "Light Sand":"icon-clouds",
-    "Heavy Sand":"icon-clouds",
-    "Haze":"icon-clouds",
-    "Light Haze":"icon-clouds",
-    "Heavy Haze":"icon-clouds",
-    "Spray":"icon-clouds",
-    "Light Spray":"icon-clouds",
-    "Heavy Spray":"icon-clouds",
-    "Dust Whirls":"icon-clouds",
-    "Light Dust Whirls":"icon-clouds",
-    "Heavy Dust Whirls":"icon-clouds",
-    "Sand Storm":"icon-clouds",
-    "Light Sand Storm":"icon-clouds",
-    "Heavy Sand Storm":"icon-clouds",
-    "Low Drifting Snow":"icon-snow",
-    "Light Low Drifting Snow":"icon-snow",
-    "Heavy Low Drifting Snow":"icon-snow",
-    "Low Drifting Widespread Dust":"icon-clouds",
-    "Light Low Drifting Widespread Dust":"icon-clouds",
-    "Heavy Low Drifting Widespread Dust":"icon-clouds",
-    "Low Drifting Sand":"icon-clouds",
-    "Light Low Drifting Sand":"icon-clouds",
-    "Heavy Low Drifting Sand":"icon-clouds",
-    "Blowing Snow":"icon-snow-alt",
-    "Light Blowing Snow":"icon-snow-alt",
-    "Heavy Blowing Snow":"icon-snow-alt",
-    "Blowing Widespread Dust":"icon-clouds",
-    "Light Blowing Widespread Dust":"icon-clouds",
-    "Heavy Blowing Widespread Dust":"icon-clouds",
-    "Blowing Sand":"icon-clouds",
-    "Light Blowing Sand":"icon-clouds",
-    "Heavy Blowing Sand":"icon-clouds",
-    "Rain Mist":"icon-rain",
-    "Light Rain Mist":"icon-rain",
-    "Heavy Rain Mist":"icon-rain",
-    "Rain Showers":"icon-rain",
-    "Light Rain Showers":"icon-rain",
-    "Heavy Rain Showers":"icon-rain",
-    "Snow Showers":"icon-snow",
-    "Light Snow Showers":"icon-snow",
-    "Heavy Snow Showers":"icon-snow",
-    "Snow Blowing Snow Mist":"icon-snow",
-    "Light Snow Blowing Snow Mist":"icon-snow",
-    "Heavy Snow Blowing Snow Mist":"icon-snow",
-    "Ice Pellets Showers":"icon-hail",
-    "Light Ice Pellets Showers":"icon-hail",
-    "Heavy Ice Pellets Showers":"icon-hail",
-    "Ice Pellets Showers":"icon-rain",
-    "Light Ice Pellets Showers":"icon-rain",
-    "Heavy Ice Pellets Showers":"icon-rain",
-    "Hail Showers":"icon-rain",
-    "Light Hail Showers":"icon-rain",
-    "Heavy Hail Showers":"icon-rain",
-    "Small Hail Showers":"icon-rain",
-    "Light Small Hail Showers":"icon-rain",
-    "Heavy Small Hail Showers":"icon-rain",
-    "Thunderstorm":"icon-clouds-flash",
-    "Light Thunderstorm":"icon-clouds-flash",
-    "Heavy Thunderstorm":"icon-clouds-flash",
-    "Thunderstorm and Rain":"icon-clouds-flash",
-    "Light Thunderstorm and Rain":"icon-clouds-flash",
-    "Heavy Thunderstorm and Rain":"icon-clouds-flash",
-    "Thunderstorm and Snow":"icon-clouds-flash",
-    "Light Thunderstorm and Snow":"icon-clouds-flash",
-    "Heavy Thunderstorm and Snow":"icon-clouds-flash",
-    "Thunderstorm and Ice Pellets":"icon-clouds-flash",
-    "Light Thunderstorm and Ice Pellets":"icon-clouds-flash",
-    "Heavy Thunderstorm and Ice Pellets":"icon-clouds-flash",
-    "Thunderstorm and Hail":"icon-clouds-flash",
-    "Light Thunderstorm and Hail":"icon-clouds-flash",
-    "Heavy Thunderstorm and Hail":"icon-clouds-flash",
-    "Freezing Drizzle":"icon-rain",
-    "Light Freezing Drizzle":"icon-rain",
-    "Heavy Freezing Drizzle":"icon-rain",
-    "Freezing Rain":"icon-rain",
-    "Light Freezing Rain":"icon-rain",
-    "Heavy Freezing Rain":"icon-rain",
-    "Freezing Fog":"icon-clouds",
-    "Light Freezing Fog":"icon-clouds",
-    "Heavy Freezing Fog":"icon-clouds",
-    "Patches of Fog":"icon-clouds",
-    "Shallow Fog":"icon-clouds",
-    "Partial Fog":"icon-cloud-sun",
-    "Overcast":"icon-sun",
-    "Scattered Clouds":"icon-cloud-sun",
-    "Small Hail":"icon-hail",
-    "Partly Cloudy": "icon-cloud-sun",
-    "Cloudy":"icon-clouds",
-    "Chance of Flurries":"icon-snow-alt",
-    "Chance of Rain":"icon-rain",
-    "Freezing Rain":"icon-hail",
-    "Sleet":"icon-hail",
-    "Sunny":"icon-sun",
-    "Thunderstorms":"icon-clouds-flash-alt",
-    "Thunderstorm":"icon-clouds-flash",
-    "Unkown":'icon-help-circled-alt',
-    "Scattered Clouds":"icon-cloud-sun",
-    "Clear":"icon-sun",
-    "Mostly Cloudy":"icon-clouds",
-  }
-
-  function toggleResults() {
-
-    var listItems = $('li');
-
-    $('.search__input').on('keyup', function(e) {
-      e.preventDefault();
-      var key = e.which,
-          selected = listItems.filter('.selected'),
-          current;
-
-      if ( key != 40 && key != 38 && key != 13 ) {
-
-        return;
-
-      }
-      else {
-
-        listItems.removeClass('selected');
-
-        if ( key == 40 ) // Down key
-        {
-            if ( ! selected.length || selected.is(':last-child') ) {
-                current = listItems.eq(0);
-            }
-            else {
-                current = selected.next();
-            }
-            current.addClass('selected');
-        }
-        else if ( key == 38 ) // Up key
-        {
-            if ( ! selected.length || selected.is(':first-child') ) {
-                current = listItems.last();
-            }
-            else {
-                current = selected.prev();
-            }
-            current.addClass('selected');
-        }
-        else if ( key == 13 ) // Enter Key
-        {
-          var citySelected = selected.children('a').data('url');
-          selected.empty();
-          console.log('city selected on Enter Key', citySelected);
-          getWeather(citySelected);
-          $('.search__input').blur();
-        }
-
-      }
-    });
-
-  }
-
-  function getCities() {
-    $('.search__results').empty();
+  function loadCitiesList(city) {
     var cityName ='',
         line = '',
-        city = $('.search__input').val(),
-        element = $('.search__results'),
-        Weather = "http://autocomplete.wunderground.com/aq?query=" + city + "&h=0",
-        url = Weather + '&cb=?';
+        city = city,
+        apiKey='vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
+        element = $('.autocomplete__list'),
+        url = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="+apiKey+"&q="+city+"";
 
+    $('.autocomplete__list').empty();
     $.getJSON(url, function(jsonp){
       $('#json-results').html(JSON.stringify(jsonp, null, 1));
-      var locations = JSON.stringify(jsonp, null, 1);
-      locations = JSON.parse(locations);
+      var cities = JSON.stringify(jsonp, null, 1);
+      cities = JSON.parse(cities);
+      arrayLength = cities.length;
+      if (arrayLength > 1 ) {
+        $('.autocomplete__list').attr('size',arrayLength);
+      }
+      for (var i = 0; i < arrayLength-1; i++) {
+         var cityName = cities[i].LocalizedName,
+             countryName = cities[i].Country.ID,
+             cityKey = cities[i].Key;
 
-      for (var i = 0; i < locations.RESULTS.length; i++) {
-         var cityName = locations.RESULTS[i].name,
-             line = locations.RESULTS[i].l;
-
-         $('.search__results').append('<li value= "'+i+'" > <a href="#" class="filter-city" data-url="'+line+'">' +cityName+ '</a></li>');
-         $('.search__results').removeClass('hide-results').addClass('show-results');
+         $('.autocomplete__list').append('<li class="autocomplete__item" value= "'+cityName+'" data-key="'+cityKey+'" data-city="'+cityName+'" data-country="'+countryName+'" >'+cityName+', '+countryName+'</li>');
+         $('.autocomplete__list').removeClass('hide-results').addClass('show-results');
       }
 
-      $(".search__results li").hover(function() {
-        $('.search__results li').removeClass('selected');
+      $(".autocomplete__item").hover(function() {
+        $('.autocomplete__item').removeClass('selected');
         $(this).addClass('selected');
       });
 
-      toggleResults();
-
     });
   }
 
-  function updateInput(location) {
-    $('.search__input:text').val('');
+  function readCityKey() {
+    var $element = $('.local-weather'),
+        cityKey = $element.data('citykey'),
+        country = $element.data('country'),
+        city = $element.data('city');
+
+    loadLocalWeather(cityKey, city , country);
+    loadFiveDayForecast(cityKey);
+
   }
 
-  function getWeather(cityLocation) {
+  readCityKey();
 
-    $('.search').removeClass('visible');
-    var $element = $('.local-weather'),
+  function loadLocalWeather(cityKey, city, country) {
+    var $location =$('.location'),
+        $element = $('.local-weather'),
         $details = $('.info-weather'),
-        key = '6d21846ad7649b70',
-        weather = "http://api.wunderground.com/api/"+key+"/conditions/q/"+cityLocation+".json";
+        apiKey = 'vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
+        Weather ="http://dataservice.accuweather.com/currentconditions/v1/"+cityKey+"?apikey="+apiKey+"&details=true";
 
     $.ajax({
-      url : weather,
+      url : Weather,
+      dataType : "json",
+      success : function(results) {
+        var arrayLength = results.length;
+
+        for(var i=0; i < arrayLength; i++) {
+          var location = city+', '+country,
+              temp = results[i].Temperature.Imperial.Value,
+              desc = results[i].WeatherText,
+              icon = results[i].WeatherIcon,
+              humidity = results[i].RelativeHumidity,
+              maximum = results[i].TemperatureSummary.Past6HourRange.Maximum.Imperial.Value,
+              minimum = results[i].TemperatureSummary.Past6HourRange.Minimum.Imperial.Value,
+              wind = results[i].Wind.Speed.Imperial.Value,
+              dewPoint =results[i].DewPoint.Imperial.Value,
+              pressure =results[i].Pressure.Imperial.Value,
+              visibility = results[i].Visibility.Imperial.Value,
+              feelsLike = results[i].RealFeelTemperature.Imperial.Value,
+              uvIndex = results[i].UVIndex,
+              uvIndexText = results[i].UVIndexText;
+
+          $location.find('.location__title').html(location);
+          $location.find('.location__icon').addClass(accuIcons[icon]);
+          $element.find('.location').html(city);
+          $element.find('.temp').html(Math.round(temp));
+          $element.find('.desc').html(desc);
+          $element.find('.icon').addClass(accuIcons[icon]);
+          $details.find('.feels').html(feelsLike);
+          $details.find('.wind').html(wind);
+          $details.find('.humidity').html(humidity);
+          $details.find('.maximum').html(maximum);
+          $details.find('.minimum').html(minimum);
+          $details.find('.dew-point').html(dewPoint);
+          $details.find('.pressure').html(pressure);
+          $details.find('.visibility').html(visibility);
+          $details.find('.uv-index').html(uvIndex);
+          $details.find('.uv-index-text').html(uvIndexText);
+
+        }
+      }
+    });
+  }
+
+  function loadTodayWeather(cityKey) {
+    var apiKey = 'vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
+        Weather ="http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+cityKey+"?apikey="+apiKey,
+        $details = $('.details-weather');
+
+    $.ajax({
+      url : Weather,
+      dataType : "json",
+      success : function(results) {
+        var arrayLength = results.DailyForecasts.length,
+            dayForecast = results.Headline.Text;
+
+        for(var i=0; i < arrayLength; i++) {
+          var day = results.DailyForecasts[i].Day.IconPhrase,
+              night = results.DailyForecasts[i].Night.IconPhrase;
+
+          $details.find('.morning').html(day);
+          $details.find('.night').html(night);
+        }
+        $details.find('.today').html(dayForecast);
+      }
+    });
+  }
+
+
+  function loadFiveDayForecast(cityKey) {
+
+    var $element = $('.forecast__col'),
+        apiKey = 'vyTIDsdrqTfCALrFfc11rXx4qQyqf8mx',
+        url = "http://dataservice.accuweather.com//forecasts/v1/daily/5day/"+cityKey+"?apikey="+apiKey;
+
+    $.ajax({
+      url : url,
       dataType : "jsonp",
       success : function(results) {
-        var temp = (results.current_observation.temp_f),
-            desc = (results.current_observation.weather),
-            location = (results.current_observation.display_location.full),
-            feels =results.current_observation.feelslike_f,
-            wind = results.current_observation.wind_gust_mph,
-            humidity = results.current_observation.relative_humidity,
-            dewpoint = results.current_observation.dewpoint_f,
-            pressure = results.current_observation.pressure_mb;
+        var dataLength = results.DailyForecasts.length;
 
-        $element.find('.location').html(location);
-        $element.find('.temp').html(Math.round(temp));
-        $element.find('.desc').html(desc);
-        $element.find('.icon').addClass(Icons[desc]);
-        $details.find('.feels').html(Math.round(feels));
-        $details.find('.wind').html(Math.round(wind));
-        $details.find('.humidity').html(humidity);
-        $details.find('.dew-point').html(dewpoint);
-        $details.find('.pressure').html(pressure);
+        for( var i=0; i <= dataLength - 1; i++ ) {
+          var max = results.DailyForecasts[i].Temperature.Maximum.Value,
+              min = results.DailyForecasts[i].Temperature.Minimum.Value,
+              day = results.DailyForecasts[i].Day.IconPhrase,
+              epoch = results.DailyForecasts[i].EpochDate,
+              night = results.DailyForecasts[i].Night.IconPhrase,
+              icon = results.DailyForecasts[i].Day.Icon,
+              date = new Date(epoch*1000),
+              month = monthNames[date.getMonth()],
+              day = date.getDate(),
+              count = i + 1;
+
+          if( count >= 2) {
+            $('.day-'+ count).find('.date').html( month+' '+day);
+          }
+          $('.day-'+ count).find('.icon').addClass(accuIcons[icon]);
+          $('.day-'+ count).find('.max').html(max);
+          $('.day-'+ count).find('.min').html(min);
+        }
        }
     });
-    $('.search__results').empty();
-    $('header').removeClass('hidden');
-    updateInput(location);
 
   }
+
+  var accuIcons = {
+    "1":"icon-sun",
+    "2":"icon-cloud-sun",
+    "3":"icon-cloud-sun",
+    "4":"icon-cloud-sun",
+    "5":"icon-cloud-sun",
+    "6":"icon-cloud-sun",
+    "7":"icon-clouds",
+    "8":"icon-clouds",
+    "11":"icon-fog-sun",
+    "12":"icon-rain",
+    "13":"icon-rain",
+    "14":"icon-rain",
+    "15":"icon-cloud-flash",
+    "16":"icon-clouds-flash-alt",
+    "17":"icon-clouds-flash-alt",
+    "18":"icon-rain",
+    "19":"icon-hail",
+    "20":"icon-snow",
+    "21":"icon-snow",
+    "22":"icon-snow",
+    "23":"icon-snow",
+    "24":"icon-hail",
+    "25":"icon-hail",
+    "26":"icon-hail",
+    "29":"icon-hail",
+    "30":"icon-sun",
+    "31":"icon-hail",
+    "32":"icon-windy",
+    "33":"icon-moon",
+    "34":"icon-moon",
+    "35":"icon-cloud-moon",
+    "36":"icon-cloud-moon",
+    "37":"icon-cloud-fog",
+    "38":"icon-cloud-moon",
+    "39":"icon-rain",
+    "40":"icon-rain",
+    "41":"icon-rain",
+    "42":"icon-rain",
+    "43":"icon-rain",
+    "44":"icon-rain",
+  }
+
+  var monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
 
 });
